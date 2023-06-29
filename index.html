@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MS02423</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="花自向阳开，人自向前走">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MS02423">
+<meta property="og:url" content="http://ms02423.top/index.html">
+<meta property="og:site_name" content="MS02423">
+<meta property="og:description" content="花自向阳开，人自向前走">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="MS02423">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="MS02423" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/http://oayoilchh.bkt.clouddn.com/2016/07/27/18:05:26%20">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  target="_blank" rel="noopener" href="https://blog.csdn.net/qq_58091216/">博客首页</a></li>
+                        
+                            <li><a  href="/archives">文章归档</a></li>
+                        
+                            <li><a  href="/CTFStudy">学习导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/zb423/" title="github">github</a>
+                            
+                                <a class="fl CSDN"  target="_blank" href="https://blog.csdn.net/qq_58091216/" title="CSDN">CSDN</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 10px;">原创</a>
+                    </div>
+                </section>
+                
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_58091216/">博客首页</a></li>
+                
+                    <li><a href="/archives">文章归档</a></li>
+                
+                    <li><a href="/CTFStudy">学习导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/zb423/" title="github">github</a>
+                    
+                        <a class="CSDN" target="_blank" href="https://blog.csdn.net/qq_58091216/" title="CSDN">CSDN</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-DVWA介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/06/29/DVWA%E4%BB%8B%E7%BB%8D/" class="article-date">
+      <time datetime="2023-06-29T02:08:59.330Z" itemprop="datePublished">2023-06-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一.DVWA介绍<br>1.1 DVWA简介</p>
+<p>DVWA是一款基于PHP和MYSQL开发的web靶场练习平台，集成了常见的web漏洞如sql注入,XSS，密码破解等常见漏洞。旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。<br>1.2 DVWA模块</p>
+<p>DVWA共有十个模块：</p>
+<pre><code>Brute Force（暴力（破解））
+
+Command Injection（命令行注入）
+
+CSRF（跨站请求伪造）
+
+File Inclusion（文件包含）
+
+File Upload（文件上传）
+
+Insecure CAPTCHA （不安全的验证码）
+
+SQL Injection（SQL注入）
+
+SQL Injection（Blind）（SQL盲注）
+
+XSS（Reflected）（反射型跨站脚本）
+</code></pre>
+<p>XSS（Stored）（存储型跨站脚本）<br>1.3 DVWA 安全级别</p>
+<p>一般情况下，DVWA一共有四种安全级别，分别为：</p>
+<p>Low、Medium、High、Impossible<br>二.DVWA的搭建<br>2.1 phpstudy的搭建</p>
+<p>phpstudy下载地址小皮面板(phpstudy) - 让天下没有难配的服务器环境！ (xp.cn)</p>
+<p><img src="http://ms02423..top/undefinedimage-20230629100816812.png" alt="image-20230629100816812"></p>
+<p>下载完后双击压缩包中的应用程序</p>
+<p>选择路径，这里我存储在D盘中</p>
+<p>然后就安装成功了</p>
+<p>2.2DVWA的搭建</p>
+<p>DVWA的官网DVWA - 该死的易受攻击的Web应用程序</p>
+<p> 将其解压到PHPstudy路径下的PHPTutorial下的WWW目录下</p>
+<p>解压后进入DVWA下的config文件打开config.inc.php文件</p>
+<p>将p@ssw0rd 修改为 root </p>
+<p>然后在浏览器中访问<a target="_blank" rel="noopener" href="http://127.0.0.1/DVWA-master/setup.php,%E7%84%B6%E5%90%8E%E7%82%B9%E5%87%BB%E7%BD%91%E7%AB%99%E4%B8%8B%E6%96%B9%E7%9A%84Create/Reset">http://127.0.0.1/DVWA-master/setup.php,然后点击网站下方的Create/Reset</a> Database按钮</p>
+<p> 接着会跳转到DVWA的登录页面默认用户名：admin 默认密码：password 成功登录</p>
+<p> 三.SQL注入漏洞<br>3.1 SQL注入原理</p>
+<p>  就是通过把恶意的sql命令插入web表单递交给服务器，或者输入域名或页面请求的查询字符串递交到服务器，达到欺骗服务器，让服务器执行这些恶意的sql命令，从而让攻击者，可以绕过一些机制，达到直接访问数据库的一种攻击手段。<br>3.2 SQL注入分类</p>
+<p>(1)数字型        （2）字符型       （3）报错注入     （4）Boollean注入                （5）时间注入<br>3.3 SQL注入思路</p>
+<p>(1).判断是否存在注入，注入是字符型还是数字型</p>
+<p>(2).猜解SQL查询语句中的字段数</p>
+<p>(3).确定回显位置</p>
+<p>(4).获取当前数据库</p>
+<p>(5).获取数据库中的表</p>
+<p>(6).获取表中的字段名</p>
+<p>(7).得到数据<br>3.4 SQL注入绕过方法</p>
+<p>(1)注释符号绕过         (2)大小写绕过         (3)内联注释绕过</p>
+<p>(4)特殊编码绕过         (5)空格过滤绕过       (6)过滤or and xor not 绕过<br>四.SQL注入漏洞的分析<br>4.1 定义</p>
+<p>SQL注入（SQLi）是一种注入攻击，可以执行恶意SQL语句。它通过将任意SQL代码插入数据库查询，使攻击者能够完全控制Web应用程序后面的数据库服务器。攻击者可以使用SQL注入漏洞绕过应用程序安全措施；可以绕过网页或Web应用程序的身份验证和授权，并检索整个SQL数据库的内容；还可以使用SQL注入来添加，修改和删除数据库中的记录。<br>4.2 原因</p>
+<p>SQL 注入漏洞存在的原因，就是拼接SQL参数。也就是将用于输入的查询参数，直接拼接在SQL语句中，导致了SQL注入漏洞。</p>
+<p>web 开发人员无法保证所有的输入都已经过滤</p>
+<p>攻击者利用发送给服务器的输入参数构造可执行的 SQL 代码（可加入到 get 请求、 post 谓求、 http 头信思、 cookie 中）</p>
+<p>数据库未做相应的安全配置</p>
+<p>五.SQL Injection<br>1.low级别</p>
+<p>(1)判断注入类型，是数字型注入，还是字符型注入</p>
+<p>我们输入1，看到正确返回值</p>
+<p> 我们输入1’，看到报错了</p>
+<p> 我们可以猜出到是字符型注入，我们继续输入1’ and ‘1’ &#x3D;’1和1’ and ‘1’&#x3D;’2。</p>
+<p> 我们根据id&#x3D;1’报错和id&#x3D;1’ and ‘1’&#x3D;’1正确，我们可以知道是字符型注入，查看源代码知道就是字符型注入。</p>
+<p>(2)判断字段数                                     order by </p>
+<p>我们使用order by 进行判断字段数， 至到order by 进行报错时候就是字段数</p>
+<p>id&#x3D;1’ order by 1#没有报错</p>
+<p> id&#x3D;1’ order by 2# 没有报错</p>
+<p> id&#x3D;1’ order by 3#时报错了，说明字段只有2列</p>
+<p>(3)判断回显位置                       union select 1,2#</p>
+<p> 可以知道回显位置 在这二个地方</p>
+<p>(4)判断数据库                                     union select 1,database()#</p>
+<p>(5)获取表名          1’  union select 1,group_concat(table_name) from information_schema.tables where 获取字段名 tables_schema&#x3D;database()#</p>
+<p> (6)获取字段名                  1’ union select 1,group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p>(7)获取数据    1’ union select user,password from users # </p>
+<p> 2.medium级别</p>
+<p>(1)判断注入类型     我们可以看到无法输入数字，所以我们进行抓包在bp中进行SQL注入</p>
+<p> 我们输入id&#x3D;1’ and ‘1’&#x3D;’1看见报错了，输入id&#x3D;1 and 1&#x3D;1没有报错。</p>
+<p> 所以注入类型为数字类型</p>
+<p>(2)判断列数</p>
+<p> 我们知道列数为2列</p>
+<p>（3）判断回显位置   </p>
+<p>我们可以知道回显位置是2</p>
+<p>(4)判断数据库</p>
+<p>（5）判断表名</p>
+<p> (6)判断列名</p>
+<p> 我们输入users之后，发现没有如何反应</p>
+<p>通过源代码我们可以知道，发现它对单引号进行了转义，我们采用16进制绕过，得知users的十六进制为 0x75736572</p>
+<p> (7)获取数据</p>
+<p> 3.high级别</p>
+<p>（1）判断注入类型</p>
+<p> 我们可以知道是字符型注入</p>
+<p>(2)判断列数</p>
+<p> 列数为2列，我们可以发现high级别和low级别的步骤是一样的，所以我在这里就不写了，可以参考low级别的步骤就行了<br>六.SQL Injection (Blind)</p>
+<p>我们在讲SQL Injection (Blind)之前，先讲一下什么是sqlmap注入。</p>
+<p>sqlmap是一个自动化的SQL注入工具，其主要功能是扫描，发现并利用给定的URL进行SQL注入。目前支持的数据库有MySql、Oracle、Access、PostageSQL、SQL Server、IBM DB2、SQLite、Firebird、Sybase和SAP MaxDB等。</p>
+<p>Sqlmap采用了以下5种独特的SQL注入技术</p>
+<pre><code>基于布尔类型的盲注，即可以根据返回页面判断条件真假的注入
+基于时间的盲注，即不能根据页面返回的内容判断任何信息，要用条件语句查看时间延迟语句是否已经执行(即页面返回时间是否增加)来判断
+基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回到页面中
+联合查询注入，在可以使用Union的情况下注入
+堆查询注入，可以同时执行多条语句时的注入
+</code></pre>
+<p>Sqlmap的强大的功能包括 数据库指纹识别、数据库枚举、数据提取、访问目标文件系统，并在获取完全的操作权限时执行任意命令。</p>
+<p>sqlmap是一个跨平台的工具，很好用，是SQL注入方面一个强大的工具！</p>
+<p>我们可以使用 -h 参数查看sqlmap的参数以及用法，sqlmap  -h</p>
+<p> sqlmap的使用方法:sqlmap -u  url 是对网站进行注入  </p>
+<pre><code>                            sqlmap -r  是对文件进行注入       
+</code></pre>
+<p>这里我们对SQL Injection的low级别进行sqlmap，具体过程我写在了图片上面</p>
+<p>1.low级别</p>
+<p>(1)我们先进行抓包</p>
+<p> (2)然后使用sqlmap</p>
+<p> (3)爆破数据库              –dbs</p>
+<p> (3)爆破表名                             -D ‘dvwa’ –tables</p>
+<p> (4)爆破字段名    -D ‘dvwa’  -T ‘ guestbook’ –columns</p>
+<p> (5)爆破数据</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-测试文章" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/06/28/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="article-date">
+      <time datetime="2023-06-28T07:37:55.000Z" itemprop="datePublished">2023-06-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/28/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/">测试文章</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/MS02423/">MS02423</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2023 MS02423
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="http://bestwing.me" target="_blank">Sw'blog</a> by Swing
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
