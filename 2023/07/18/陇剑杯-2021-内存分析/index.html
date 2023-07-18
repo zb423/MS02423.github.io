@@ -539,7 +539,49 @@ pre:active {
 <p>在进程中PPID比PID还大，那就可能这个进程有异常程序<br>从内存文件中找到异常程序植入到系统的开机自启痕迹 shimcache</p>
 <pre><code>volatility -f 2008.raw –profile=Win2008R2SP1x64 shimcache
 </code></pre>
-<h1 id="七-例题讲解"><a href="#七-例题讲解" class="headerlink" title="七.例题讲解"></a>七.例题讲解</h1>
+<h1 id="七-例题讲解"><a href="#七-例题讲解" class="headerlink" title="七.例题讲解"></a>七.例题讲解</h1><p>[陇剑杯 2021]内存分析</p>
+<p>1.网管小王制作了一个虚拟机文件，让您来分析后作答：虚拟机的密码是_____________。（密码中为flag{xxxx}，含有空格，提交时不要去掉）。</p>
+<p>1)首先确定镜像是何种操作系统的，命令imageinfo即可获取镜像信息</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718192418198.png" alt="image-20230718192418198"></p>
+<p>2)我们使用hashdump获取sam</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718192741658.png" alt="image-20230718192741658"></p>
+<p>3)john工具来进行爆破，但是好像跑不出来结果。应该是设定了强密码。于是只能使用了lasdump命令来查看</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718192801504.png" alt="image-20230718192801504"></p>
+<p>我们可以看到flag</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">flag&#123;W31C0M3 T0 THiS 34SY F0R3NSiCX&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>2.虚拟机中有一个某品牌手机的备份文件，文件里的图片里的字符串为_____________。（解题过程中需要用到上一题答案中flag{}内的内容进行处理。本题的格式也是flag{xxx}，含有空格，提交时不要去掉）</p>
+<p>1)我们直接在桌面进行搜索，我们可以看到HUAWEI手机</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718193125512.png" alt="image-20230718193125512"></p>
+<p>2)我们直接搜索HUAWEI</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718193510157.png" alt="image-20230718193510157"></p>
+<p>3)将第一个提取出来</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718193728215.png" alt="image-20230718193728215"></p>
+<p>4)我们可以看到2个文件，我们进行解压</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718193757715.png" alt="image-20230718193757715"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718194316509.png" alt="image-20230718194316509"></p>
+<p>5)解压完成后发现多了一个HUAWEI P40_2021-aa-bb xx.yy.zz文件夹，并且在里面发现一个images0.tar.enc文件，此文件为华为加密文件，我们需要在网上下载解密脚本，解压密码题目中已经提示为上一题的flag,也就是W31C0M3 T0 THiS 34SY F0R3NSiCX，注意，运行脚本时密码的空格要改为’_’也就是W31C0M3_T0_THiS_34SY_F0R3NSiCX</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718194455738.png" alt="image-20230718194455738"></p>
+<p>6)项目地址</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>RealityNet<span class="token operator">/</span>kobackupdec<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后运行命令</p>
+<pre class="line-numbers language-none"><code class="language-none">用法：
+kobackupdec.py [-h] [-v] password backup_path dest_path
+password：是用户提供的密码
+backup_path：是包含华为备份的文件夹，可以使用相对或绝对路径
+dest_path：是要在指定路径（绝对或相对）中创建的文件夹。如果提供的文件夹已存在，它将报错
+例如：
+python kobackupdec.py -vvv W31C0M3_T0_THiS_34SY_F0R3NSiCX &quot;&#x2F;home&#x2F;kali&#x2F;volatility_2.6_lin64_standalone&#x2F;HUAWEI P40_2021-aa-bb xx.yy.zz&#x2F;picture&#x2F;storage&#x2F;MediaTar&#x2F;images&#x2F;&quot; &#x2F;home&#x2F;kali<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>由于我的环境有问题，所以后面我使用网上的图片</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718201203971.png" alt="image-20230718201203971"></p>
+<p>7)运行完后会有两个文件，打开storage</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20230718201230377.png" alt="image-20230718201230377"></p>
+<p>8)里面会有一个.tar压缩文件，打开后会有flag</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/2a86bea6dbfd4e91a3559abcc1b9b39a.png" alt="img"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">flag&#123;TH4NK Y0U <span class="token keyword">FOR</span> DECRYPTING MY <span class="token keyword">DATA</span>&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
     </article>
     
     <div class="read-nums">
