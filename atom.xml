@@ -6,7 +6,7 @@
   <link href="http://ms02423.top/atom.xml" rel="self"/>
   
   <link href="http://ms02423.top/"/>
-  <updated>2024-05-31T13:45:57.531Z</updated>
+  <updated>2024-05-31T13:47:58.170Z</updated>
   <id>http://ms02423.top/</id>
   
   <author>
@@ -21,11 +21,15 @@
     <link href="http://ms02423.top/2024/05/31/vulnhub%E9%9D%B6%E5%9C%BA%E4%B9%8BFunBox-10/"/>
     <id>http://ms02423.top/2024/05/31/vulnhub%E9%9D%B6%E5%9C%BA%E4%B9%8BFunBox-10/</id>
     <published>2024-05-31T13:45:57.000Z</published>
-    <updated>2024-05-31T13:45:57.531Z</updated>
+    <updated>2024-05-31T13:47:58.170Z</updated>
     
     
     
     
+    <category term="渗透测试" scheme="http://ms02423.top/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+    <category term="vulnhub靶场" scheme="http://ms02423.top/tags/vulnhub%E9%9D%B6%E5%9C%BA/"/>
     
   </entry>
   
